@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { User, Settings, LogOut, Edit, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SignOutModal from '../SignOutModal';
+import Settings from './Settings';
 
 const UserDropdown = ({ user, onSignOut }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,9 +65,8 @@ const UserDropdown = ({ user, onSignOut }) => {
   };
 
   const handleSettings = () => {
-    // This would typically navigate to settings page
-    console.log('Settings clicked');
-    setIsOpen(false);
+     setIsOpen(false);
+     navigate('./settings')
   };
 
   return (
