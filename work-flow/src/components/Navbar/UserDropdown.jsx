@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { User, Settings, LogOut, Edit, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SignOutModal from '../SignOutModal';
-import SettingsPage from './SettingsPage';
 
 const UserDropdown = ({ user, onSignOut }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,12 +59,12 @@ const UserDropdown = ({ user, onSignOut }) => {
 
   const handleEditProfile = () => {
     setIsOpen(false);
-    navigate('./editprofile')
+    navigate('/editprofile')
   };
 
   const handleSettings = () => {
      setIsOpen(false);
-     navigate('./settings')
+     navigate('/settings')
   };
 
   return (
