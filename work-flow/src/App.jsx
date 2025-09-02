@@ -10,7 +10,7 @@ import Dashboard from "./pages/WorkFlowDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import OnboardingForm from "./pages/OnboardingForm";
 import AIChat from "./pages/AIChat";
-import Settings from "./components/Navbar/SettingsPage";
+import SettingsPage from "./components/Navbar/SettingsPage";
 import EditProfile from "./components/Navbar/EditProfile";
 
 // ProtectedRoute component with role-based rendering
@@ -116,7 +116,7 @@ function App() {
         />
 
         <Route path="/ai-chat" element={<AIChat />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/settings" element={<SettingsPage />} />
         <Route path="/editprofile" element={<EditProfile />} />
 
         {/* Catch-all */}

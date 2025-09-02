@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { User, Settings, LogOut, Edit, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SignOutModal from '../SignOutModal';
-import Settings from './SettingsPage';
+import SettingsPage from './SettingsPage';
 
 const UserDropdown = ({ user, onSignOut }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -132,7 +132,7 @@ const UserDropdown = ({ user, onSignOut }) => {
                   onClick={handleSettings}
                   className="w-full px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3"
                 >
-                  <Settings className="w-4 h-4 text-gray-500" />
+                  <SettingsPage className="w-4 h-4 text-gray-500" />
                   <span>Settings</span>
                 </button>
 
