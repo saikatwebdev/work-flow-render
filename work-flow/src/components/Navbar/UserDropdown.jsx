@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { User, Settings, LogOut, Edit, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SignOutModal from '../SignOutModal';
-import Settings from './Settings';
+import Settings from './SettingsPage';
 
 const UserDropdown = ({ user, onSignOut }) => {
   const [isOpen, setIsOpen] = useState(false);

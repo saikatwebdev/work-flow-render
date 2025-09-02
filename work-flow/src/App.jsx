@@ -10,7 +10,7 @@ import Dashboard from "./pages/WorkFlowDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import OnboardingForm from "./pages/OnboardingForm";
 import AIChat from "./pages/AIChat";
-import Settings from "./components/Navbar/Settings";
+import Settings from "./components/Navbar/SettingsPage";
 import EditProfile from "./components/Navbar/EditProfile";
 
 // ProtectedRoute component with role-based rendering

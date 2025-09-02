@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Settings, User, Mail, Phone, Shield, Trash2, Eye, EyeOff, Save, AlertTriangle, CheckCircle, X } from 'lucide-react';
 
-const Settings = () => {
+const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [showPassword, setShowPassword] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -470,4 +470,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default SettingsPage;
