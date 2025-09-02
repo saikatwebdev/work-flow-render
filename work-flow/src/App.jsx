@@ -116,6 +116,8 @@ function App() {
         />
 
         <Route path="/ai-chat" element={<AIChat />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/editprofile" element={<EditProfile />} />
 
         {/* Catch-all */}
         <Route path="*" element={<Navigate to="/" replace />} />

@@ -32,8 +32,6 @@ import SignOutModal from "../components/SignOutModal";
 import CampaignsDemo from "../components/CreateCampaign/CampaignsDemo";
 import AICounsellor from "../components/DashboardSections/AICounsellor/AICounsellor";
 import ContactUploadPage from "../components/DashboardSections/Contacts/ContactUploadPage";
-import SettingsPage from "../components/Navbar/SettingsPage";
-import EditProfile from "../components/Navbar/EditProfile";
 const WorkFlowDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
@@ -182,8 +180,6 @@ const WorkFlowDashboard = () => {
             <Route path="/chats" element={<Chats />} />
             <Route path="/ai-counsellor" element={<AICounsellor />} />
             <Route path="/contacts" element={<ContactUploadPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/editprofile" element={<EditProfile />} />
             <Route
               path="*"
               element={<Navigate to="/dashboard/profile" replace />}
