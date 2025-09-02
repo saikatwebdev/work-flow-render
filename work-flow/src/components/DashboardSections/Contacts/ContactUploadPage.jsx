@@ -1,0 +1,310 @@
+import React, { useState } from 'react';
+import { Upload, Users, Mail, Phone, Trash2, Download, Plus, X } from 'lucide-react';
+
+const ContactUploadPage = () => {
+  const [uploadedContacts, setUploadedContacts] = useState([]);
+  const [dragActive, setDragActive] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [manualContact, setManualContact] = useState({ name: '', email: '', phone: '' });
+  const [showManualForm, setShowManualForm] = useState(false);
+
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      handleFile(e.target.files[0]);
+    }
+  };
+
+  const handleFile = (file) => {
+    if (file.type === 'text/csv' || file.name.endsWith('.csv')) {
+      setSelectedFile(file);
+      processCSV(file);
+    } else {
+      alert('Please upload a CSV file');
+    }
+  };
+
+  const processCSV = (file) => {
+    setIsProcessing(true);
+    const reader = new FileReader();
+    
+    reader.onload = (e) => {
+      const text = e.target.result;
+      const lines = text.split('\n');
+      const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+      
+      const contacts = lines.slice(1)
+        .filter(line => line.trim())
+        .map((line, index) => {
+          const values = line.split(',').map(v => v.trim());
+          return {
+            id: Date.now() + index,
+            name: values[headers.indexOf('name')] || values[0] || 'Unknown',
+            email: values[headers.indexOf('email')] || values[1] || '',
+            phone: values[headers.indexOf('phone')] || values[2] || ''
+          };
+        });
+      
+      setUploadedContacts(contacts);
+      setIsProcessing(false);
+    };
+    
+    reader.readAsText(file);
+  };
+
+  const addManualContact = () => {
+    if (manualContact.name && (manualContact.email || manualContact.phone)) {
+      setUploadedContacts(prev => [...prev, {
+        id: Date.now(),
+        ...manualContact
+      }]);
+      setManualContact({ name: '', email: '', phone: '' });
+      setShowManualForm(false);
+    }
+  };
+
+  const removeContact = (id) => {
+    setUploadedContacts(prev => prev.filter(contact => contact.id !== id));
+  };
+
+  const downloadTemplate = () => {
+    const csvContent = "name,email,phone\nJohn Doe,john@example.com,+1234567890\nJane Smith,jane@example.com,+0987654321";
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'contact_template.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
+  const startAutomation = () => {
+    if (uploadedContacts.length === 0) {
+      alert('Please upload contacts first');
+      return;
+    }
+    alert(`Starting automation for ${uploadedContacts.length} contacts!`);
+    // Here you would integrate with your automation system
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center mb-4">
+            <Users className="h-8 w-8 text-blue-600 mr-3" />
+            <h1 className="text-3xl font-bold text-gray-900">Contact Management</h1>
+          </div>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Upload your contact lists to start automation campaigns. Support CSV format with name, email, and phone columns.
+          </p>
+        </div>
+
+        {/* Upload Section */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-semibold text-gray-800">Upload Contacts</h2>
+            <button
+              onClick={downloadTemplate}
+              className="flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              Download Template
+            </button>
+          </div>
+
+          {/* File Upload Area */}
+          <div
+            className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+              dragActive 
+                ? 'border-blue-400 bg-blue-50' 
+                : 'border-gray-300 hover:border-gray-400'
+            }`}
+            onDragEnter={handleDrag}
+            onDragLeave={handleDrag}
+            onDragOver={handleDrag}
+            onDrop={handleDrop}
+          >
+            <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <p className="text-lg font-medium text-gray-600 mb-2">
+              Drop your CSV file here, or 
+              <label className="text-blue-600 hover:text-blue-700 cursor-pointer ml-1">
+                browse
+                <input
+                  type="file"
+                  accept=".csv"
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+              </label>
+            </p>
+            <p className="text-sm text-gray-500">
+              Supports CSV files with name, email, and phone columns
+            </p>
+          </div>
+
+          {selectedFile && (
+            <div className="mt-4 p-4 bg-green-50 rounded-lg">
+              <p className="text-green-800 font-medium">
+                ✓ File uploaded: {selectedFile.name}
+              </p>
+              {isProcessing && (
+                <p className="text-green-600 text-sm mt-1">Processing contacts...</p>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Manual Contact Addition */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold text-gray-800">Add Contact Manually</h2>
+            <button
+              onClick={() => setShowManualForm(!showManualForm)}
+              className="flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              {showManualForm ? <X className="h-4 w-4 mr-2" /> : <Plus className="h-4 w-4 mr-2" />}
+              {showManualForm ? 'Cancel' : 'Add Contact'}
+            </button>
+          </div>
+
+          {showManualForm && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
+              <input
+                type="text"
+                placeholder="Name"
+                value={manualContact.name}
+                onChange={(e) => setManualContact({...manualContact, name: e.target.value})}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                value={manualContact.email}
+                onChange={(e) => setManualContact({...manualContact, email: e.target.value})}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <div className="flex gap-2">
+                <input
+                  type="tel"
+                  placeholder="Phone"
+                  value={manualContact.phone}
+                  onChange={(e) => setManualContact({...manualContact, phone: e.target.value})}
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button
+                  onClick={addManualContact}
+                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Contacts List */}
+        {uploadedContacts.length > 0 && (
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-semibold text-gray-800">
+                Uploaded Contacts ({uploadedContacts.length})
+              </h2>
+              <button
+                onClick={startAutomation}
+                className="flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+              >
+                <Mail className="h-5 w-5 mr-2" />
+                Start Automation
+              </button>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Name
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Email
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Phone
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {uploadedContacts.map((contact) => (
+                    <tr key={contact.id} className="hover:bg-gray-50">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {contact.name}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <div className="flex items-center">
+                          <Mail className="h-4 w-4 mr-2 text-gray-400" />
+                          {contact.email || 'N/A'}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <div className="flex items-center">
+                          <Phone className="h-4 w-4 mr-2 text-gray-400" />
+                          {contact.phone || 'N/A'}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <button
+                          onClick={() => removeContact(contact.id)}
+                          className="text-red-600 hover:text-red-800 transition-colors"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* Empty State */}
+        {uploadedContacts.length === 0 && !isProcessing && (
+          <div className="text-center py-12">
+            <Users className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-600 mb-2">No contacts uploaded yet</h3>
+            <p className="text-gray-500">
+              Upload a CSV file or add contacts manually to get started
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ContactUploadPage;
