@@ -1,0 +1,570 @@
+import React, { useState } from 'react';
+import { User, Camera, Upload, Save, X, MapPin, Calendar, Briefcase, Globe, Github, Linkedin, Twitter, Instagram, Mail, Phone, CheckCircle, AlertCircle } from 'lucide-react';
+
+const EditProfile = () => {
+  const [profileData, setProfileData] = useState({
+    firstName: 'John',
+    lastName: 'Doe',
+    username: 'johndoe',
+    email: 'john.doe@example.com',
+    phone: '+1234567890',
+    bio: 'Digital marketing enthusiast and automation specialist. Love creating efficient workflows and connecting with people.',
+    location: 'New York, USA',
+    website: 'https://johndoe.com',
+    company: 'Tech Solutions Inc.',
+    jobTitle: 'Marketing Manager',
+    dateOfBirth: '1990-05-15',
+    gender: 'male',
+    timeZone: 'America/New_York',
+    language: 'en',
+    socialMedia: {
+      github: 'johndoe',
+      linkedin: 'john-doe',
+      twitter: 'johndoe',
+      instagram: 'johndoe'
+    },
+    preferences: {
+      emailNotifications: true,
+      smsNotifications: false,
+      marketingEmails: true,
+      profileVisibility: 'public'
+    }
+  });
+
+  const [profileImage, setProfileImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face');
+  const [isUploading, setIsUploading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [activeSection, setActiveSection] = useState('basic');
+
+  const handleInputChange = (field, value) => {
+    if (field.includes('.')) {
+      const [parent, child] = field.split('.');
+      setProfileData(prev => ({
+        ...prev,
+        [parent]: {
+          ...prev[parent],
+          [child]: value
+        }
+      }));
+    } else {
+      setProfileData(prev => ({
+        ...prev,
+        [field]: value
+      }));
+    }
+    
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({
+        ...prev,
+        [field]: null
+      }));
+    }
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        setErrors(prev => ({ ...prev, image: 'Image size should be less than 5MB' }));
+        return;
+      }
+      
+      if (!file.type.startsWith('image/')) {
+        setErrors(prev => ({ ...prev, image: 'Please upload a valid image file' }));
+        return;
+      }
+
+      setProfileImage(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreview(e.target.result);
+      };
+      reader.readAsDataURL(file);
+      setErrors(prev => ({ ...prev, image: null }));
+    }
+  };
+
+  const removeImage = () => {
+    setProfileImage(null);
+    setImagePreview('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face');
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!profileData.firstName.trim()) newErrors.firstName = 'First name is required';
+    if (!profileData.lastName.trim()) newErrors.lastName = 'Last name is required';
+    if (!profileData.username.trim()) newErrors.username = 'Username is required';
+    if (profileData.username.length < 3) newErrors.username = 'Username must be at least 3 characters';
+    if (!profileData.email.trim()) newErrors.email = 'Email is required';
+    if (!/\S+@\S+\.\S+/.test(profileData.email)) newErrors.email = 'Email is invalid';
+    if (profileData.bio.length > 500) newErrors.bio = 'Bio must be less than 500 characters';
+    if (profileData.website && !/^https?:\/\/.+/.test(profileData.website)) {
+      newErrors.website = 'Website must be a valid URL (include http:// or https://)';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const saveProfile = async () => {
+    if (!validateForm()) return;
+
+    setIsUploading(true);
+    
+    // Simulate API call
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+      
+      console.log('Profile data to save:', profileData);
+      if (profileImage) {
+        console.log('Profile image to upload:', profileImage);
+      }
+    } catch (error) {
+      setErrors(prev => ({ ...prev, general: 'Failed to save profile. Please try again.' }));
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const SectionButton = ({ id, label, icon: Icon }) => (
+    <button
+      onClick={() => setActiveSection(id)}
+      className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors w-full ${
+        activeSection === id
+          ? 'bg-blue-100 text-blue-700'
+          : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
+      }`}
+    >
+      <Icon className="h-4 w-4 mr-3" />
+      {label}
+    </button>
+  );
+
+  const InputField = ({ label, field, type = 'text', placeholder, error, ...props }) => (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
+      <input
+        type={type}
+        value={field.includes('.') ? profileData[field.split('.')[0]][field.split('.')[1]] : profileData[field]}
+        onChange={(e) => handleInputChange(field, e.target.value)}
+        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          error ? 'border-red-300' : 'border-gray-300'
+        }`}
+        placeholder={placeholder}
+        {...props}
+      />
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center mb-4">
+            <User className="h-8 w-8 text-blue-600 mr-3" />
+            <h1 className="text-3xl font-bold text-gray-900">Edit Profile</h1>
+          </div>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Update your profile information and customize your public presence.
+          </p>
+        </div>
+
+        {/* Success Message */}
+        {showSuccess && (
+          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+            <div className="flex items-center">
+              <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+              <p className="text-green-800">Profile updated successfully!</p>
+            </div>
+          </div>
+        )}
+
+        {/* Error Message */}
+        {errors.general && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <div className="flex items-center">
+              <AlertCircle className="h-5 w-5 text-red-500 mr-2" />
+              <p className="text-red-800">{errors.general}</p>
+            </div>
+          </div>
+        )}
+
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="flex">
+            {/* Sidebar Navigation */}
+            <div className="w-64 bg-gray-50 p-6 border-r border-gray-200">
+              <div className="space-y-2">
+                <SectionButton id="basic" label="Basic Info" icon={User} />
+                <SectionButton id="contact" label="Contact" icon={Mail} />
+                <SectionButton id="social" label="Social Media" icon={Globe} />
+                <SectionButton id="preferences" label="Preferences" icon={User} />
+              </div>
+            </div>
+
+            {/* Main Content */}
+            <div className="flex-1 p-6">
+              {/* Profile Picture Section */}
+              <div className="mb-8 text-center">
+                <div className="relative inline-block">
+                  <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-200 border-4 border-white shadow-lg">
+                    <img 
+                      src={imagePreview} 
+                      alt="Profile" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <label className="absolute bottom-0 right-0 bg-blue-600 text-white p-2 rounded-full cursor-pointer hover:bg-blue-700 transition-colors">
+                    <Camera className="h-4 w-4" />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+                {profileImage && (
+                  <button
+                    onClick={removeImage}
+                    className="mt-2 text-sm text-red-600 hover:text-red-700"
+                  >
+                    Remove Photo
+                  </button>
+                )}
+                {errors.image && (
+                  <p className="text-red-500 text-sm mt-2">{errors.image}</p>
+                )}
+              </div>
+
+              {/* Basic Info Section */}
+              {activeSection === 'basic' && (
+                <div className="space-y-6">
+                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Basic Information</h2>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <InputField
+                      label="First Name"
+                      field="firstName"
+                      placeholder="Enter your first name"
+                      error={errors.firstName}
+                    />
+                    
+                    <InputField
+                      label="Last Name"
+                      field="lastName"
+                      placeholder="Enter your last name"
+                      error={errors.lastName}
+                    />
+                  </div>
+
+                  <InputField
+                    label="Username"
+                    field="username"
+                    placeholder="Choose a unique username"
+                    error={errors.username}
+                  />
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
+                    <textarea
+                      value={profileData.bio}
+                      onChange={(e) => handleInputChange('bio', e.target.value)}
+                      rows={4}
+                      className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                        errors.bio ? 'border-red-300' : 'border-gray-300'
+                      }`}
+                      placeholder="Tell us about yourself..."
+                    />
+                    <p className="text-sm text-gray-500 mt-1">
+                      {profileData.bio.length}/500 characters
+                    </p>
+                    {errors.bio && <p className="text-red-500 text-sm mt-1">{errors.bio}</p>}
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                      <select
+                        value={profileData.gender}
+                        onChange={(e) => handleInputChange('gender', e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not-to-say">Prefer not to say</option>
+                      </select>
+                    </div>
+
+                    <InputField
+                      label="Date of Birth"
+                      field="dateOfBirth"
+                      type="date"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <InputField
+                      label="Company"
+                      field="company"
+                      placeholder="Your company name"
+                    />
+                    
+                    <InputField
+                      label="Job Title"
+                      field="jobTitle"
+                      placeholder="Your job title"
+                    />
+                  </div>
+
+                  <InputField
+                    label="Location"
+                    field="location"
+                    placeholder="City, Country"
+                  />
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Time Zone</label>
+                      <select
+                        value={profileData.timeZone}
+                        onChange={(e) => handleInputChange('timeZone', e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        <option value="America/New_York">Eastern Time (ET)</option>
+                        <option value="America/Chicago">Central Time (CT)</option>
+                        <option value="America/Denver">Mountain Time (MT)</option>
+                        <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                        <option value="Europe/London">London (GMT)</option>
+                        <option value="Europe/Paris">Paris (CET)</option>
+                        <option value="Asia/Tokyo">Tokyo (JST)</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Language</label>
+                      <select
+                        value={profileData.language}
+                        onChange={(e) => handleInputChange('language', e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="it">Italian</option>
+                        <option value="pt">Portuguese</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Contact Section */}
+              {activeSection === 'contact' && (
+                <div className="space-y-6">
+                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Contact Information</h2>
+                  
+                  <InputField
+                    label="Email Address"
+                    field="email"
+                    type="email"
+                    placeholder="your.email@example.com"
+                    error={errors.email}
+                  />
+
+                  <InputField
+                    label="Phone Number"
+                    field="phone"
+                    type="tel"
+                    placeholder="+1 (555) 123-4567"
+                  />
+
+                  <InputField
+                    label="Website"
+                    field="website"
+                    type="url"
+                    placeholder="https://yourwebsite.com"
+                    error={errors.website}
+                  />
+                </div>
+              )}
+
+              {/* Social Media Section */}
+              {activeSection === 'social' && (
+                <div className="space-y-6">
+                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Social Media Links</h2>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3">
+                      <Github className="h-5 w-5 text-gray-600" />
+                      <div className="flex-1">
+                        <input
+                          type="text"
+                          value={profileData.socialMedia.github}
+                          onChange={(e) => handleInputChange('socialMedia.github', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          placeholder="GitHub username"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex items-center space-x-3">
+                      <Linkedin className="h-5 w-5 text-blue-600" />
+                      <div className="flex-1">
+                        <input
+                          type="text"
+                          value={profileData.socialMedia.linkedin}
+                          onChange={(e) => handleInputChange('socialMedia.linkedin', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          placeholder="LinkedIn username"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex items-center space-x-3">
+                      <Twitter className="h-5 w-5 text-blue-400" />
+                      <div className="flex-1">
+                        <input
+                          type="text"
+                          value={profileData.socialMedia.twitter}
+                          onChange={(e) => handleInputChange('socialMedia.twitter', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          placeholder="Twitter username"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex items-center space-x-3">
+                      <Instagram className="h-5 w-5 text-pink-600" />
+                      <div className="flex-1">
+                        <input
+                          type="text"
+                          value={profileData.socialMedia.instagram}
+                          onChange={(e) => handleInputChange('socialMedia.instagram', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          placeholder="Instagram username"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Preferences Section */}
+              {activeSection === 'preferences' && (
+                <div className="space-y-6">
+                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Preferences</h2>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                      <div>
+                        <h3 className="font-medium text-gray-900">Email Notifications</h3>
+                        <p className="text-sm text-gray-600">Receive notifications via email</p>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={profileData.preferences.emailNotifications}
+                          onChange={(e) => handleInputChange('preferences.emailNotifications', e.target.checked)}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                      </label>
+                    </div>
+
+                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                      <div>
+                        <h3 className="font-medium text-gray-900">SMS Notifications</h3>
+                        <p className="text-sm text-gray-600">Receive notifications via SMS</p>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={profileData.preferences.smsNotifications}
+                          onChange={(e) => handleInputChange('preferences.smsNotifications', e.target.checked)}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                      </label>
+                    </div>
+
+                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                      <div>
+                        <h3 className="font-medium text-gray-900">Marketing Emails</h3>
+                        <p className="text-sm text-gray-600">Receive promotional content and updates</p>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={profileData.preferences.marketingEmails}
+                          onChange={(e) => handleInputChange('preferences.marketingEmails', e.target.checked)}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                      </label>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Profile Visibility</label>
+                      <select
+                        value={profileData.preferences.profileVisibility}
+                        onChange={(e) => handleInputChange('preferences.profileVisibility', e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        <option value="public">Public - Anyone can see your profile</option>
+                        <option value="private">Private - Only you can see your profile</option>
+                        <option value="connections">Connections - Only your connections can see</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Save Button */}
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <div className="flex justify-end space-x-3">
+                  <button
+                    onClick={() => window.history.back()}
+                    className="px-6 py-3 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors font-medium"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={saveProfile}
+                    disabled={isUploading}
+                    className="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isUploading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                        Saving...
+                      </>
+                    ) : (
+                      <>
+                        <Save className="h-5 w-5 mr-2" />
+                        Save Changes
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default EditProfile;

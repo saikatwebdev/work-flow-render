@@ -59,9 +59,8 @@ const UserDropdown = ({ user, onSignOut }) => {
   };
 
   const handleEditProfile = () => {
-    // This would typically open a modal or navigate to an edit page
-    console.log('Edit profile clicked');
     setIsOpen(false);
+    navigate('./editprofile')
   };
 
   const handleSettings = () => {

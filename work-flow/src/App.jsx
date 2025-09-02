@@ -11,6 +11,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import OnboardingForm from "./pages/OnboardingForm";
 import AIChat from "./pages/AIChat";
 import Settings from "./components/Navbar/Settings";
+import EditProfile from "./components/Navbar/EditProfile";
 
 // ProtectedRoute component with role-based rendering
 const ProtectedRoute = ({ children, adminOnly = false }) => {
@@ -115,11 +116,11 @@ function App() {
         />
 
         <Route path="/ai-chat" element={<AIChat />} />
-         <Route path="/settings" element={<Settings />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/editprofile" element={<EditProfile />} />
 
         {/* Catch-all */}
         <Route path="*" element={<Navigate to="/" replace />} />
-
       </Routes>
     </Router>
   );
