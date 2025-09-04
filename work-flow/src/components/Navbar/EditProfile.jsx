@@ -123,8 +123,8 @@ const EditProfilePage = () => {
       onClick={() => setActiveSection(id)}
       className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors w-full ${
         activeSection === id
-          ? 'bg-blue-100 text-blue-700'
-          : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
+          ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30'
+          : 'text-gray-300 hover:text-white hover:bg-gray-700/50'
       }`}
     >
       <Icon className="h-4 w-4 mr-3" />
@@ -134,59 +134,59 @@ const EditProfilePage = () => {
 
   const InputField = React.memo(({ label, field, type = 'text', placeholder, error, ...props }) => (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
+      <label className="block text-sm font-medium text-gray-300 mb-2">{label}</label>
       <input
         type={type}
         value={profileData[field] || ''}
         onChange={(e) => handleInputChange(field, e.target.value)}
-        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-          error ? 'border-red-300' : 'border-gray-300'
+        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400 ${
+          error ? 'border-red-400' : 'border-gray-600'
         }`}
         placeholder={placeholder}
         {...props}
       />
-      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+      {error && <p className="text-red-400 text-sm mt-1">{error}</p>}
     </div>
   ));
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
-            <User className="h-8 w-8 text-blue-600 mr-3" />
-            <h1 className="text-3xl font-bold text-gray-900">Edit Profile</h1>
+            <User className="h-8 w-8 text-blue-400 mr-3" />
+            <h1 className="text-3xl font-bold text-white">Edit Profile</h1>
           </div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-400 max-w-2xl mx-auto">
             Update your profile information and customize your public presence.
           </p>
         </div>
 
         {/* Success Message */}
         {showSuccess && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+          <div className="mb-6 p-4 bg-green-900/30 border border-green-500/30 rounded-lg">
             <div className="flex items-center">
-              <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
-              <p className="text-green-800">Profile updated successfully!</p>
+              <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
+              <p className="text-green-300">Profile updated successfully!</p>
             </div>
           </div>
         )}
 
         {/* Error Message */}
         {errors.general && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+          <div className="mb-6 p-4 bg-red-900/30 border border-red-500/30 rounded-lg">
             <div className="flex items-center">
-              <AlertCircle className="h-5 w-5 text-red-500 mr-2" />
-              <p className="text-red-800">{errors.general}</p>
+              <AlertCircle className="h-5 w-5 text-red-400 mr-2" />
+              <p className="text-red-300">{errors.general}</p>
             </div>
           </div>
         )}
 
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="bg-gray-800 rounded-lg shadow-2xl overflow-hidden border border-gray-700">
           <div className="flex">
             {/* Sidebar Navigation */}
-            <div className="w-64 bg-gray-50 p-6 border-r border-gray-200">
+            <div className="w-64 bg-gray-800/50 p-6 border-r border-gray-700">
               <div className="space-y-2">
                 <SectionButton id="basic" label="Basic Info" icon={User} />
                 <SectionButton id="contact" label="Contact" icon={Mail} />
@@ -200,7 +200,7 @@ const EditProfilePage = () => {
               {/* Profile Picture Section */}
               <div className="mb-8 text-center">
                 <div className="relative inline-block">
-                  <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-200 border-4 border-white shadow-lg">
+                  <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-700 border-4 border-gray-600 shadow-lg">
                     <img 
                       src={imagePreview} 
                       alt="Profile" 
@@ -220,20 +220,20 @@ const EditProfilePage = () => {
                 {profileImage && (
                   <button
                     onClick={removeImage}
-                    className="mt-2 text-sm text-red-600 hover:text-red-700"
+                    className="mt-2 text-sm text-red-400 hover:text-red-300"
                   >
                     Remove Photo
                   </button>
                 )}
                 {errors.image && (
-                  <p className="text-red-500 text-sm mt-2">{errors.image}</p>
+                  <p className="text-red-400 text-sm mt-2">{errors.image}</p>
                 )}
               </div>
 
               {/* Basic Info Section */}
               {activeSection === 'basic' && (
                 <div className="space-y-6">
-                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Basic Information</h2>
+                  <h2 className="text-xl font-semibold text-white mb-4">Basic Information</h2>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <InputField
@@ -259,29 +259,29 @@ const EditProfilePage = () => {
                   />
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Bio</label>
                     <textarea
                       value={profileData.bio}
                       onChange={(e) => handleInputChange('bio', e.target.value)}
                       rows={4}
-                      className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                        errors.bio ? 'border-red-300' : 'border-gray-300'
+                      className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400 ${
+                        errors.bio ? 'border-red-400' : 'border-gray-600'
                       }`}
                       placeholder="Tell us about yourself..."
                     />
                     <p className="text-sm text-gray-500 mt-1">
                       {profileData.bio.length}/500 characters
                     </p>
-                    {errors.bio && <p className="text-red-500 text-sm mt-1">{errors.bio}</p>}
+                    {errors.bio && <p className="text-red-400 text-sm mt-1">{errors.bio}</p>}
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Gender</label>
                       <select
                         value={profileData.gender}
                         onChange={(e) => handleInputChange('gender', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white"
                       >
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
@@ -320,11 +320,11 @@ const EditProfilePage = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Time Zone</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Time Zone</label>
                       <select
                         value={profileData.timeZone}
                         onChange={(e) => handleInputChange('timeZone', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white"
                       >
                         <option value="America/New_York">Eastern Time (ET)</option>
                         <option value="America/Chicago">Central Time (CT)</option>
@@ -337,11 +337,11 @@ const EditProfilePage = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Language</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Language</label>
                       <select
                         value={profileData.language}
                         onChange={(e) => handleInputChange('language', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white"
                       >
                         <option value="en">English</option>
                         <option value="es">Spanish</option>
@@ -358,7 +358,7 @@ const EditProfilePage = () => {
               {/* Contact Section */}
               {activeSection === 'contact' && (
                 <div className="space-y-6">
-                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Contact Information</h2>
+                  <h2 className="text-xl font-semibold text-white mb-4">Contact Information</h2>
                   
                   <InputField
                     label="Email Address"
@@ -388,56 +388,56 @@ const EditProfilePage = () => {
               {/* Social Media Section */}
               {activeSection === 'social' && (
                 <div className="space-y-6">
-                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Social Media Links</h2>
+                  <h2 className="text-xl font-semibold text-white mb-4">Social Media Links</h2>
                   
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
-                      <Github className="h-5 w-5 text-gray-600" />
+                      <Github className="h-5 w-5 text-gray-400" />
                       <div className="flex-1">
                         <input
                           type="text"
                           value={profileData.githubUsername}
                           onChange={(e) => handleInputChange('githubUsername', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400"
                           placeholder="GitHub username"
                         />
                       </div>
                     </div>
 
                     <div className="flex items-center space-x-3">
-                      <Linkedin className="h-5 w-5 text-blue-600" />
+                      <Linkedin className="h-5 w-5 text-blue-400" />
                       <div className="flex-1">
                         <input
                           type="text"
                           value={profileData.linkedinUsername}
                           onChange={(e) => handleInputChange('linkedinUsername', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400"
                           placeholder="LinkedIn username"
                         />
                       </div>
                     </div>
 
                     <div className="flex items-center space-x-3">
-                      <Twitter className="h-5 w-5 text-blue-400" />
+                      <Twitter className="h-5 w-5 text-sky-400" />
                       <div className="flex-1">
                         <input
                           type="text"
                           value={profileData.twitterUsername}
                           onChange={(e) => handleInputChange('twitterUsername', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400"
                           placeholder="Twitter username"
                         />
                       </div>
                     </div>
 
                     <div className="flex items-center space-x-3">
-                      <Instagram className="h-5 w-5 text-pink-600" />
+                      <Instagram className="h-5 w-5 text-pink-400" />
                       <div className="flex-1">
                         <input
                           type="text"
                           value={profileData.instagramUsername}
                           onChange={(e) => handleInputChange('instagramUsername', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400"
                           placeholder="Instagram username"
                         />
                       </div>
@@ -449,13 +449,13 @@ const EditProfilePage = () => {
               {/* Preferences Section */}
               {activeSection === 'preferences' && (
                 <div className="space-y-6">
-                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Preferences</h2>
+                  <h2 className="text-xl font-semibold text-white mb-4">Preferences</h2>
                   
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div className="flex items-center justify-between p-4 bg-gray-700/30 rounded-lg border border-gray-600">
                       <div>
-                        <h3 className="font-medium text-gray-900">Email Notifications</h3>
-                        <p className="text-sm text-gray-600">Receive notifications via email</p>
+                        <h3 className="font-medium text-white">Email Notifications</h3>
+                        <p className="text-sm text-gray-400">Receive notifications via email</p>
                       </div>
                       <label className="relative inline-flex items-center cursor-pointer">
                         <input
@@ -464,14 +464,14 @@ const EditProfilePage = () => {
                           onChange={(e) => handleInputChange('emailNotifications', e.target.checked)}
                           className="sr-only peer"
                         />
-                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                       </label>
                     </div>
 
-                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div className="flex items-center justify-between p-4 bg-gray-700/30 rounded-lg border border-gray-600">
                       <div>
-                        <h3 className="font-medium text-gray-900">SMS Notifications</h3>
-                        <p className="text-sm text-gray-600">Receive notifications via SMS</p>
+                        <h3 className="font-medium text-white">SMS Notifications</h3>
+                        <p className="text-sm text-gray-400">Receive notifications via SMS</p>
                       </div>
                       <label className="relative inline-flex items-center cursor-pointer">
                         <input
@@ -480,14 +480,14 @@ const EditProfilePage = () => {
                           onChange={(e) => handleInputChange('smsNotifications', e.target.checked)}
                           className="sr-only peer"
                         />
-                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                       </label>
                     </div>
 
-                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div className="flex items-center justify-between p-4 bg-gray-700/30 rounded-lg border border-gray-600">
                       <div>
-                        <h3 className="font-medium text-gray-900">Marketing Emails</h3>
-                        <p className="text-sm text-gray-600">Receive promotional content and updates</p>
+                        <h3 className="font-medium text-white">Marketing Emails</h3>
+                        <p className="text-sm text-gray-400">Receive promotional content and updates</p>
                       </div>
                       <label className="relative inline-flex items-center cursor-pointer">
                         <input
@@ -496,16 +496,16 @@ const EditProfilePage = () => {
                           onChange={(e) => handleInputChange('marketingEmails', e.target.checked)}
                           className="sr-only peer"
                         />
-                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                       </label>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Profile Visibility</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Profile Visibility</label>
                       <select
                         value={profileData.profileVisibility}
                         onChange={(e) => handleInputChange('profileVisibility', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white"
                       >
                         <option value="public">Public - Anyone can see your profile</option>
                         <option value="private">Private - Only you can see your profile</option>
@@ -517,11 +517,11 @@ const EditProfilePage = () => {
               )}
 
               {/* Save Button */}
-              <div className="mt-8 pt-6 border-t border-gray-200">
+              <div className="mt-8 pt-6 border-t border-gray-800">
                 <div className="flex justify-end space-x-3">
                   <button
                     onClick={() => window.history.back()}
-                    className="px-6 py-3 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors font-medium"
+                    className="px-6 py-3 text-gray-300 bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors font-medium border border-gray-800"
                   >
                     Cancel
                   </button>
