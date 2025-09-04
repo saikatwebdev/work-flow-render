@@ -123,7 +123,7 @@ const EditProfilePage = () => {
       onClick={() => setActiveSection(id)}
       className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors w-full ${
         activeSection === id
-          ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30'
+          ? 'bg-black-600/20 text-black-400 border border-black-500/30'
           : 'text-gray-300 hover:text-white hover:bg-gray-700/50'
       }`}
     >
@@ -139,7 +139,7 @@ const EditProfilePage = () => {
         type={type}
         value={profileData[field] || ''}
         onChange={(e) => handleInputChange(field, e.target.value)}
-        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400 ${
+        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black-500 bg-gray-800 text-white placeholder-gray-400 ${
           error ? 'border-red-400' : 'border-gray-600'
         }`}
         placeholder={placeholder}
@@ -155,7 +155,7 @@ const EditProfilePage = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
-            <User className="h-8 w-8 text-blue-400 mr-3" />
+            <User className="h-8 w-8 text-black-400 mr-3" />
             <h1 className="text-3xl font-bold text-white">Edit Profile</h1>
           </div>
           <p className="text-gray-400 max-w-2xl mx-auto">
@@ -207,7 +207,7 @@ const EditProfilePage = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <label className="absolute bottom-0 right-0 bg-blue-600 text-white p-2 rounded-full cursor-pointer hover:bg-blue-700 transition-colors">
+                  <label className="absolute bottom-0 right-0 bg-black-600 text-white p-2 rounded-full cursor-pointer hover:bg-black-700 transition-colors">
                     <Camera className="h-4 w-4" />
                     <input
                       type="file"
@@ -264,7 +264,7 @@ const EditProfilePage = () => {
                       value={profileData.bio}
                       onChange={(e) => handleInputChange('bio', e.target.value)}
                       rows={4}
-                      className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400 ${
+                      className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black-500 bg-gray-800 text-white placeholder-gray-400 ${
                         errors.bio ? 'border-red-400' : 'border-gray-600'
                       }`}
                       placeholder="Tell us about yourself..."
@@ -281,7 +281,7 @@ const EditProfilePage = () => {
                       <select
                         value={profileData.gender}
                         onChange={(e) => handleInputChange('gender', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white"
+                        className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-black-500 bg-gray-800 text-white"
                       >
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
@@ -324,7 +324,7 @@ const EditProfilePage = () => {
                       <select
                         value={profileData.timeZone}
                         onChange={(e) => handleInputChange('timeZone', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white"
+                        className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-black-500 bg-gray-800 text-white"
                       >
                         <option value="America/New_York">Eastern Time (ET)</option>
                         <option value="America/Chicago">Central Time (CT)</option>
@@ -341,7 +341,7 @@ const EditProfilePage = () => {
                       <select
                         value={profileData.language}
                         onChange={(e) => handleInputChange('language', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white"
+                        className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-black-500 bg-gray-800 text-white"
                       >
                         <option value="en">English</option>
                         <option value="es">Spanish</option>
@@ -398,20 +398,20 @@ const EditProfilePage = () => {
                           type="text"
                           value={profileData.githubUsername}
                           onChange={(e) => handleInputChange('githubUsername', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400"
+                          className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-black-500 bg-gray-800 text-white placeholder-gray-400"
                           placeholder="GitHub username"
                         />
                       </div>
                     </div>
 
                     <div className="flex items-center space-x-3">
-                      <Linkedin className="h-5 w-5 text-blue-400" />
+                      <Linkedin className="h-5 w-5 text-black-400" />
                       <div className="flex-1">
                         <input
                           type="text"
                           value={profileData.linkedinUsername}
                           onChange={(e) => handleInputChange('linkedinUsername', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400"
+                          className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-black-500 bg-gray-800 text-white placeholder-gray-400"
                           placeholder="LinkedIn username"
                         />
                       </div>
@@ -424,7 +424,7 @@ const EditProfilePage = () => {
                           type="text"
                           value={profileData.twitterUsername}
                           onChange={(e) => handleInputChange('twitterUsername', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400"
+                          className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-black-500 bg-gray-800 text-white placeholder-gray-400"
                           placeholder="Twitter username"
                         />
                       </div>
@@ -437,7 +437,7 @@ const EditProfilePage = () => {
                           type="text"
                           value={profileData.instagramUsername}
                           onChange={(e) => handleInputChange('instagramUsername', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400"
+                          className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-black-500 bg-gray-800 text-white placeholder-gray-400"
                           placeholder="Instagram username"
                         />
                       </div>
@@ -464,7 +464,7 @@ const EditProfilePage = () => {
                           onChange={(e) => handleInputChange('emailNotifications', e.target.checked)}
                           className="sr-only peer"
                         />
-                        <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-black-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-black-600"></div>
                       </label>
                     </div>
 
@@ -480,7 +480,7 @@ const EditProfilePage = () => {
                           onChange={(e) => handleInputChange('smsNotifications', e.target.checked)}
                           className="sr-only peer"
                         />
-                        <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-black-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-black-600"></div>
                       </label>
                     </div>
 
@@ -496,7 +496,7 @@ const EditProfilePage = () => {
                           onChange={(e) => handleInputChange('marketingEmails', e.target.checked)}
                           className="sr-only peer"
                         />
-                        <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-black-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-black-600"></div>
                       </label>
                     </div>
 
@@ -505,7 +505,7 @@ const EditProfilePage = () => {
                       <select
                         value={profileData.profileVisibility}
                         onChange={(e) => handleInputChange('profileVisibility', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white"
+                        className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-black-500 bg-gray-800 text-white"
                       >
                         <option value="public">Public - Anyone can see your profile</option>
                         <option value="private">Private - Only you can see your profile</option>
@@ -528,7 +528,7 @@ const EditProfilePage = () => {
                   <button
                     onClick={saveProfile}
                     disabled={isUploading}
-                    className="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center px-6 py-3 bg-black-600 text-white rounded-lg hover:bg-black-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isUploading ? (
                       <>
