@@ -521,7 +521,7 @@ const EditProfilePage = () => {
                 <div className="flex justify-end space-x-3">
                   <button
                     onClick={() => window.history.back()}
-                    className="px-6 py-3 text-gray-300 bg-blue-600 rounded-lg hover:bg-gray-700 transition-colors font-medium border border-gray-700 shadow-sm"
+                    className="px-6 py-3 text-gray-300 bg-black-600 rounded-lg hover:bg-gray-700 transition-colors font-medium border border-gray-700 shadow-sm"
                   >
                     Cancel
                   </button>
