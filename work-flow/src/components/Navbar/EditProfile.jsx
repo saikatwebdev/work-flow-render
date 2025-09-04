@@ -124,7 +124,7 @@ const EditProfilePage = () => {
       className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors w-full ${
         activeSection === id
           ? 'bg-gray-700 text-white shadow-md border border-gray-600'
-          : 'text-gray-400 hover:text-white hover:bg-gray-800'
+          : 'text-gray-400 hover:text-white hover:bg-black'
       }`}
     >
       <Icon className="h-4 w-4 mr-3" />
@@ -139,7 +139,7 @@ const EditProfilePage = () => {
         type={type}
         value={profileData[field] || ''}
         onChange={(e) => handleInputChange(field, e.target.value)}
-        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white placeholder-gray-500 ${
+        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white placeholder-gray-500 ${
           error ? 'border-red-500' : 'border-gray-700'
         }`}
         placeholder={placeholder}
@@ -165,7 +165,7 @@ const EditProfilePage = () => {
 
         {/* Success Message */}
         {showSuccess && (
-          <div className="mb-6 p-4 bg-gray-800 border border-gray-700 rounded-lg shadow-lg">
+          <div className="mb-6 p-4 bg-black border border-gray-700 rounded-lg shadow-lg">
             <div className="flex items-center">
               <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
               <p className="text-gray-300">Profile updated successfully!</p>
@@ -175,7 +175,7 @@ const EditProfilePage = () => {
 
         {/* Error Message */}
         {errors.general && (
-          <div className="mb-6 p-4 bg-gray-800 border border-gray-700 rounded-lg shadow-lg">
+          <div className="mb-6 p-4 bg-black border border-gray-700 rounded-lg shadow-lg">
             <div className="flex items-center">
               <AlertCircle className="h-5 w-5 text-red-400 mr-2" />
               <p className="text-gray-300">{errors.general}</p>
@@ -183,10 +183,10 @@ const EditProfilePage = () => {
           </div>
         )}
 
-        <div className="bg-gray-900 rounded-lg shadow-2xl overflow-hidden border border-gray-800">
+        <div className="bg-black rounded-lg shadow-2xl overflow-hidden border border-gray-800">
           <div className="flex flex-col md:flex-row">
             {/* Sidebar Navigation */}
-            <div className="w-full md:w-64 bg-gray-900 p-6 border-b md:border-b-0 md:border-r border-gray-800">
+            <div className="w-full md:w-64 bg-black p-6 border-b md:border-b-0 md:border-r border-gray-800">
               <div className="space-y-2">
                 <SectionButton id="basic" label="Basic Info" icon={User} />
                 <SectionButton id="contact" label="Contact" icon={Mail} />
@@ -200,14 +200,14 @@ const EditProfilePage = () => {
               {/* Profile Picture Section */}
               <div className="mb-8 text-center">
                 <div className="relative inline-block">
-                  <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-800 border-4 border-gray-700 shadow-xl">
+                  <div className="w-32 h-32 rounded-full overflow-hidden bg-black border-4 border-gray-700 shadow-xl">
                     <img 
                       src={imagePreview} 
                       alt="Profile" 
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <label className="absolute bottom-0 right-0 bg-gray-800 text-white p-2 rounded-full cursor-pointer hover:bg-gray-700 transition-colors border border-gray-600 shadow-md">
+                  <label className="absolute bottom-0 right-0 bg-black text-white p-2 rounded-full cursor-pointer hover:bg-gray-700 transition-colors border border-gray-600 shadow-md">
                     <Camera className="h-4 w-4" />
                     <input
                       type="file"
@@ -264,7 +264,7 @@ const EditProfilePage = () => {
                       value={profileData.bio}
                       onChange={(e) => handleInputChange('bio', e.target.value)}
                       rows={4}
-                      className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white placeholder-gray-500 ${
+                      className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white placeholder-gray-500 ${
                         errors.bio ? 'border-red-500' : 'border-gray-700'
                       }`}
                       placeholder="Tell us about yourself..."
@@ -281,7 +281,7 @@ const EditProfilePage = () => {
                       <select
                         value={profileData.gender}
                         onChange={(e) => handleInputChange('gender', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white"
+                        className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
                       >
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
@@ -324,7 +324,7 @@ const EditProfilePage = () => {
                       <select
                         value={profileData.timeZone}
                         onChange={(e) => handleInputChange('timeZone', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white"
+                        className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
                       >
                         <option value="America/New_York">Eastern Time (ET)</option>
                         <option value="America/Chicago">Central Time (CT)</option>
@@ -341,7 +341,7 @@ const EditProfilePage = () => {
                       <select
                         value={profileData.language}
                         onChange={(e) => handleInputChange('language', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white"
+                        className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
                       >
                         <option value="en">English</option>
                         <option value="es">Spanish</option>
@@ -398,7 +398,7 @@ const EditProfilePage = () => {
                           type="text"
                           value={profileData.githubUsername}
                           onChange={(e) => handleInputChange('githubUsername', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white placeholder-gray-500"
+                          className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white placeholder-gray-500"
                           placeholder="GitHub username"
                         />
                       </div>
@@ -411,7 +411,7 @@ const EditProfilePage = () => {
                           type="text"
                           value={profileData.linkedinUsername}
                           onChange={(e) => handleInputChange('linkedinUsername', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white placeholder-gray-500"
+                          className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white placeholder-gray-500"
                           placeholder="LinkedIn username"
                         />
                       </div>
@@ -424,7 +424,7 @@ const EditProfilePage = () => {
                           type="text"
                           value={profileData.twitterUsername}
                           onChange={(e) => handleInputChange('twitterUsername', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white placeholder-gray-500"
+                          className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white placeholder-gray-500"
                           placeholder="Twitter username"
                         />
                       </div>
@@ -437,7 +437,7 @@ const EditProfilePage = () => {
                           type="text"
                           value={profileData.instagramUsername}
                           onChange={(e) => handleInputChange('instagramUsername', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white placeholder-gray-500"
+                          className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white placeholder-gray-500"
                           placeholder="Instagram username"
                         />
                       </div>
@@ -452,7 +452,7 @@ const EditProfilePage = () => {
                   <h2 className="text-xl font-semibold text-white mb-4">Preferences</h2>
                   
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700 shadow-sm">
+                    <div className="flex items-center justify-between p-4 bg-black rounded-lg border border-gray-700 shadow-sm">
                       <div>
                         <h3 className="font-medium text-white">Email Notifications</h3>
                         <p className="text-sm text-gray-400">Receive notifications via email</p>
@@ -468,7 +468,7 @@ const EditProfilePage = () => {
                       </label>
                     </div>
 
-                    <div className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700 shadow-sm">
+                    <div className="flex items-center justify-between p-4 bg-black rounded-lg border border-gray-700 shadow-sm">
                       <div>
                         <h3 className="font-medium text-white">SMS Notifications</h3>
                         <p className="text-sm text-gray-400">Receive notifications via SMS</p>
@@ -484,7 +484,7 @@ const EditProfilePage = () => {
                       </label>
                     </div>
 
-                    <div className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700 shadow-sm">
+                    <div className="flex items-center justify-between p-4 bg-black rounded-lg border border-gray-700 shadow-sm">
                       <div>
                         <h3 className="font-medium text-white">Marketing Emails</h3>
                         <p className="text-sm text-gray-400">Receive promotional content and updates</p>
@@ -505,7 +505,7 @@ const EditProfilePage = () => {
                       <select
                         value={profileData.profileVisibility}
                         onChange={(e) => handleInputChange('profileVisibility', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white"
+                        className="w-full px-3 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
                       >
                         <option value="public">Public - Anyone can see your profile</option>
                         <option value="private">Private - Only you can see your profile</option>
@@ -521,7 +521,7 @@ const EditProfilePage = () => {
                 <div className="flex justify-end space-x-3">
                   <button
                     onClick={() => window.history.back()}
-                    className="px-6 py-3 text-gray-300 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors font-medium border border-gray-700 shadow-sm"
+                    className="px-6 py-3 text-gray-300 bg-black rounded-lg hover:bg-gray-700 transition-colors font-medium border border-gray-700 shadow-sm"
                   >
                     Cancel
                   </button>
