@@ -109,6 +109,12 @@ function getTokenFromHeader(req) {
 }
 
 function requireAuth(req, res, next) {
+  const BYPASS_AUTH = String(process.env.BYPASS_AUTH || '').toLowerCase() === 'true';
+  if (BYPASS_AUTH) {
+    // Trust provided user id or fallback to a dev id
+    req.userId = req.body?.userId || req.headers['x-user-id'] || 'dev-user-id';
+    return next();
+  }
   const token = getTokenFromHeader(req);
   const userId = token && authStore.tokens.get(token);
   if (!userId) return res.status(401).json({ success: false, message: 'Unauthorized' });

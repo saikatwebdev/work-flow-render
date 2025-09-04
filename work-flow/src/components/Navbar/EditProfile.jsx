@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { User, Camera, Upload, Save, X, MapPin, Calendar, Briefcase, Globe, Github, Linkedin, Twitter, Instagram, Mail, Phone, CheckCircle, AlertCircle } from 'lucide-react';
 
-const EditProfile = () => {
+const EditProfilePage = () => {
   const [profileData, setProfileData] = useState({
     firstName: 'John',
     lastName: 'Doe',
@@ -17,18 +17,14 @@ const EditProfile = () => {
     gender: 'male',
     timeZone: 'America/New_York',
     language: 'en',
-    socialMedia: {
-      github: 'johndoe',
-      linkedin: 'john-doe',
-      twitter: 'johndoe',
-      instagram: 'johndoe'
-    },
-    preferences: {
-      emailNotifications: true,
-      smsNotifications: false,
-      marketingEmails: true,
-      profileVisibility: 'public'
-    }
+    githubUsername: 'johndoe',
+    linkedinUsername: 'john-doe',
+    twitterUsername: 'johndoe',
+    instagramUsername: 'johndoe',
+    emailNotifications: true,
+    smsNotifications: false,
+    marketingEmails: true,
+    profileVisibility: 'public'
   });
 
   const [profileImage, setProfileImage] = useState(null);
@@ -38,22 +34,11 @@ const EditProfile = () => {
   const [errors, setErrors] = useState({});
   const [activeSection, setActiveSection] = useState('basic');
 
-  const handleInputChange = (field, value) => {
-    if (field.includes('.')) {
-      const [parent, child] = field.split('.');
-      setProfileData(prev => ({
-        ...prev,
-        [parent]: {
-          ...prev[parent],
-          [child]: value
-        }
-      }));
-    } else {
-      setProfileData(prev => ({
-        ...prev,
-        [field]: value
-      }));
-    }
+  const handleInputChange = useCallback((field, value) => {
+    setProfileData(prev => ({
+      ...prev,
+      [field]: value
+    }));
     
     // Clear error when user starts typing
     if (errors[field]) {
@@ -62,7 +47,7 @@ const EditProfile = () => {
         [field]: null
       }));
     }
-  };
+  }, [errors]);
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -147,12 +132,12 @@ const EditProfile = () => {
     </button>
   );
 
-  const InputField = ({ label, field, type = 'text', placeholder, error, ...props }) => (
+  const InputField = React.memo(({ label, field, type = 'text', placeholder, error, ...props }) => (
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
       <input
         type={type}
-        value={field.includes('.') ? profileData[field.split('.')[0]][field.split('.')[1]] : profileData[field]}
+        value={profileData[field] || ''}
         onChange={(e) => handleInputChange(field, e.target.value)}
         className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
           error ? 'border-red-300' : 'border-gray-300'
@@ -162,7 +147,7 @@ const EditProfile = () => {
       />
       {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
-  );
+  ));
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -411,8 +396,8 @@ const EditProfile = () => {
                       <div className="flex-1">
                         <input
                           type="text"
-                          value={profileData.socialMedia.github}
-                          onChange={(e) => handleInputChange('socialMedia.github', e.target.value)}
+                          value={profileData.githubUsername}
+                          onChange={(e) => handleInputChange('githubUsername', e.target.value)}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                           placeholder="GitHub username"
                         />
@@ -424,8 +409,8 @@ const EditProfile = () => {
                       <div className="flex-1">
                         <input
                           type="text"
-                          value={profileData.socialMedia.linkedin}
-                          onChange={(e) => handleInputChange('socialMedia.linkedin', e.target.value)}
+                          value={profileData.linkedinUsername}
+                          onChange={(e) => handleInputChange('linkedinUsername', e.target.value)}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                           placeholder="LinkedIn username"
                         />
@@ -437,8 +422,8 @@ const EditProfile = () => {
                       <div className="flex-1">
                         <input
                           type="text"
-                          value={profileData.socialMedia.twitter}
-                          onChange={(e) => handleInputChange('socialMedia.twitter', e.target.value)}
+                          value={profileData.twitterUsername}
+                          onChange={(e) => handleInputChange('twitterUsername', e.target.value)}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                           placeholder="Twitter username"
                         />
@@ -450,8 +435,8 @@ const EditProfile = () => {
                       <div className="flex-1">
                         <input
                           type="text"
-                          value={profileData.socialMedia.instagram}
-                          onChange={(e) => handleInputChange('socialMedia.instagram', e.target.value)}
+                          value={profileData.instagramUsername}
+                          onChange={(e) => handleInputChange('instagramUsername', e.target.value)}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                           placeholder="Instagram username"
                         />
@@ -475,8 +460,8 @@ const EditProfile = () => {
                       <label className="relative inline-flex items-center cursor-pointer">
                         <input
                           type="checkbox"
-                          checked={profileData.preferences.emailNotifications}
-                          onChange={(e) => handleInputChange('preferences.emailNotifications', e.target.checked)}
+                          checked={profileData.emailNotifications}
+                          onChange={(e) => handleInputChange('emailNotifications', e.target.checked)}
                           className="sr-only peer"
                         />
                         <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
@@ -491,8 +476,8 @@ const EditProfile = () => {
                       <label className="relative inline-flex items-center cursor-pointer">
                         <input
                           type="checkbox"
-                          checked={profileData.preferences.smsNotifications}
-                          onChange={(e) => handleInputChange('preferences.smsNotifications', e.target.checked)}
+                          checked={profileData.smsNotifications}
+                          onChange={(e) => handleInputChange('smsNotifications', e.target.checked)}
                           className="sr-only peer"
                         />
                         <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
@@ -507,8 +492,8 @@ const EditProfile = () => {
                       <label className="relative inline-flex items-center cursor-pointer">
                         <input
                           type="checkbox"
-                          checked={profileData.preferences.marketingEmails}
-                          onChange={(e) => handleInputChange('preferences.marketingEmails', e.target.checked)}
+                          checked={profileData.marketingEmails}
+                          onChange={(e) => handleInputChange('marketingEmails', e.target.checked)}
                           className="sr-only peer"
                         />
                         <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
@@ -518,8 +503,8 @@ const EditProfile = () => {
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Profile Visibility</label>
                       <select
-                        value={profileData.preferences.profileVisibility}
-                        onChange={(e) => handleInputChange('preferences.profileVisibility', e.target.value)}
+                        value={profileData.profileVisibility}
+                        onChange={(e) => handleInputChange('profileVisibility', e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                       >
                         <option value="public">Public - Anyone can see your profile</option>
@@ -567,4 +552,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default EditProfilePage;

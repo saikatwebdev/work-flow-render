@@ -169,9 +169,17 @@ const generateToken = (userId) => {
   );
 };
 
-// Verify token middleware
+// Verify token middleware (supports bypass via env)
 const authMiddleware = async (req, res, next) => {
   try {
+    const BYPASS_AUTH = String(process.env.BYPASS_AUTH || '').toLowerCase() === 'true';
+    if (BYPASS_AUTH) {
+      // When bypassing, trust provided userId or fall back to a dev id
+      const userId = req.body?.userId || req.header('x-user-id') || 'dev-user-id';
+      req.user = { _id: userId, email: 'dev@example.com', role: 'admin', onboardingCompleted: false };
+      return next();
+    }
+
     const token = req.header('Authorization')?.replace('Bearer ', '');
     
     if (!token) {
@@ -192,9 +200,16 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
-// Admin middleware
+// Admin middleware (supports bypass via env)
 const adminMiddleware = async (req, res, next) => {
   try {
+    const BYPASS_AUTH = String(process.env.BYPASS_AUTH || '').toLowerCase() === 'true';
+    if (BYPASS_AUTH) {
+      const userId = req.body?.userId || req.header('x-user-id') || 'dev-admin-id';
+      req.user = { _id: userId, email: 'admin@example.com', role: 'admin', onboardingCompleted: true };
+      return next();
+    }
+
     // First check if user is authenticated
     const token = req.header('Authorization')?.replace('Bearer ', '');
     
