@@ -521,14 +521,14 @@ const EditProfilePage = () => {
                 <div className="flex justify-end space-x-3">
                   <button
                     onClick={() => window.history.back()}
-                    className="px-6 py-3 text-gray-300 bg-black rounded-lg hover:bg-gray-700 transition-colors font-medium border border-gray-700 shadow-sm"
+                    className="px-6 py-3 text-gray-300 bg-blue-600 rounded-lg hover:bg-gray-700 transition-colors font-medium border border-gray-700 shadow-sm"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={saveProfile}
                     disabled={isUploading}
-                    className="flex items-center px-6 py-3 bg-black-600 text-white rounded-lg hover:bg-black-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
+                    className="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-black-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
                   >
                     {isUploading ? (
                       <>
