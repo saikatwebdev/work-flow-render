@@ -45,7 +45,7 @@ const AICounsellor = () => {
         const res = await fetch('/api/messenger/messages?conversationId=' + encodeURIComponent(selectedId));
         // We don't need messages here; just try fetch stored prompt via a dedicated endpoint soon.
       } catch (_) {}
-      // Try to fetch stored system prompt via a tiny POST (existing save endpoint doesn’t have GET; we can extend later)
+      // Try to fetch stored system prompt via a tiny POST (existing save endpoint doesn't have GET; we can extend later)
       try {
         const res = await fetch('/api/messenger/system-prompt?conversationId=' + encodeURIComponent(selectedId));
         if (res.ok) {
@@ -82,20 +82,20 @@ const AICounsellor = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-4 space-y-6">
+    <div className="max-w-6xl mx-auto p-4 space-y-6 bg-black min-h-screen">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">AI Counsellor</h1>
-          <p className="text-gray-600">Select a user conversation from any platform and get actionable insights.</p>
+          <h1 className="text-2xl font-bold text-white">AI Counsellor</h1>
+          <p className="text-gray-300">Select a user conversation from any platform and get actionable insights.</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+      <div className="bg-[#255F38] rounded-lg border border-gray-700 p-4 space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Conversation</label>
+            <label className="block text-sm font-medium text-white mb-1">Conversation</label>
             <select
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full border border-gray-700 bg-black text-white rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#1F7D53] focus:border-transparent"
               value={selectedId}
               onChange={e => setSelectedId(e.target.value)}
               disabled={loadingList}
@@ -110,7 +110,7 @@ const AICounsellor = () => {
             <button
               onClick={handleAnalyze}
               disabled={!selectedId || analyzing}
-              className={`px-4 py-2 rounded-lg text-white font-medium ${(!selectedId || analyzing) ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'} transition-colors`}
+              className={`px-4 py-2 rounded-lg text-white font-medium ${(!selectedId || analyzing) ? 'bg-gray-600' : 'bg-[#1F7D53] hover:bg-black'} transition-colors`}
             >
               {analyzing ? 'Analyzing…' : 'Analyze'}
             </button>
@@ -119,9 +119,9 @@ const AICounsellor = () => {
 
         {/* System prompt editor */}
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-gray-700">System prompt (what we sell, positioning, tone)</label>
+          <label className="block text-sm font-medium text-white">System prompt (what we sell, positioning, tone)</label>
           <textarea
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[100px]"
+            className="w-full border border-gray-700 bg-black text-white rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#1F7D53] focus:border-transparent min-h-[100px] placeholder-gray-400"
             placeholder="e.g., We sell a SaaS workflow automation tool for SMBs. Emphasize ROI, fast onboarding, and 24/7 support. Use friendly, concise tone."
             value={systemPrompt}
             onChange={e => setSystemPrompt(e.target.value)}
@@ -148,49 +148,49 @@ const AICounsellor = () => {
                 }
               }}
               disabled={!selectedId}
-              className={`px-3 py-2 rounded-lg text-white font-medium ${!selectedId ? 'bg-gray-400' : 'bg-gray-800 hover:bg-gray-900'} transition-colors`}
+              className={`px-3 py-2 rounded-lg text-white font-medium ${!selectedId ? 'bg-gray-600' : 'bg-black hover:bg-[#1F7D53]'} transition-colors`}
             >
               Save prompt
             </button>
           </div>
         </div>
 
-        {error && <div className="text-sm text-red-600">{error}</div>}
+        {error && <div className="text-sm text-red-400">{error}</div>}
       </div>
 
       {/* Analysis card */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="bg-[#255F38] rounded-lg border border-gray-700 p-4">
         {!analysis ? (
-          <div className="text-gray-500 text-sm">No analysis yet. Select a conversation and click Analyze.</div>
+          <div className="text-gray-400 text-sm">No analysis yet. Select a conversation and click Analyze.</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-3">
               <div>
-                <p className="text-xs text-gray-500">Intent</p>
-                <p className="text-sm font-medium text-gray-900">{analysis.intent || '-'}</p>
+                <p className="text-xs text-gray-400">Intent</p>
+                <p className="text-sm font-medium text-white">{analysis.intent || '-'}</p>
               </div>
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <p className="text-xs text-gray-500">Interest Score</p>
-                  <p className="text-sm font-medium text-gray-900">{analysis.interestScore ?? '-'}</p>
+                  <p className="text-xs text-gray-400">Interest Score</p>
+                  <p className="text-sm font-medium text-white">{analysis.interestScore ?? '-'}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500">Stage</p>
-                  <p className="text-sm font-medium text-gray-900 capitalize">{analysis.stage || '-'}</p>
+                  <p className="text-xs text-gray-400">Stage</p>
+                  <p className="text-sm font-medium text-white capitalize">{analysis.stage || '-'}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500">Urgency</p>
-                  <p className="text-sm font-medium text-gray-900 capitalize">{analysis.urgency || '-'}</p>
+                  <p className="text-xs text-gray-400">Urgency</p>
+                  <p className="text-sm font-medium text-white capitalize">{analysis.urgency || '-'}</p>
                 </div>
               </div>
               <div>
-                <p className="text-xs text-gray-500">Objections</p>
+                <p className="text-xs text-gray-400">Objections</p>
                 <div className="flex flex-wrap gap-2 mt-1">
                   {(analysis.objections || []).length === 0 ? (
-                    <span className="text-xs text-gray-500">None detected</span>
+                    <span className="text-xs text-gray-400">None detected</span>
                   ) : (
                     (analysis.objections || []).map((o, i) => (
-                      <span key={i} className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">{o}</span>
+                      <span key={i} className="text-xs bg-[#1F7D53] text-gray-300 px-2 py-1 rounded">{o}</span>
                     ))
                   )}
                 </div>
@@ -198,24 +198,24 @@ const AICounsellor = () => {
             </div>
             <div className="space-y-3">
               <div>
-                <p className="text-xs text-gray-500">Suggested Next Step</p>
-                <p className="text-sm font-medium text-gray-900">{analysis.suggestedNextStep || '-'}</p>
+                <p className="text-xs text-gray-400">Suggested Next Step</p>
+                <p className="text-sm font-medium text-white">{analysis.suggestedNextStep || '-'}</p>
               </div>
               <div>
-                <p className="text-xs text-gray-500">Recommended Content</p>
+                <p className="text-xs text-gray-400">Recommended Content</p>
                 <div className="flex flex-wrap gap-2 mt-1">
                   {(analysis.recommendedContent || []).length === 0 ? (
-                    <span className="text-xs text-gray-500">None</span>
+                    <span className="text-xs text-gray-400">None</span>
                   ) : (
                     (analysis.recommendedContent || []).map((c, i) => (
-                      <span key={i} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">{c}</span>
+                      <span key={i} className="text-xs bg-[#1F7D53] text-white px-2 py-1 rounded">{c}</span>
                     ))
                   )}
                 </div>
               </div>
               <div>
-                <p className="text-xs text-gray-500">Summary</p>
-                <p className="text-sm text-gray-800 mt-1">{analysis.summary || '-'}</p>
+                <p className="text-xs text-gray-400">Summary</p>
+                <p className="text-sm text-gray-300 mt-1">{analysis.summary || '-'}</p>
               </div>
             </div>
           </div>
