@@ -72,20 +72,20 @@ const OutreachMessage = ({ data, onChange, validation, campaignData }) => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 bg-black text-white min-h-screen p-6">
       {/* Header */}
       <div className="text-center space-y-2">
-        <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
-          <Send className="w-8 h-8 text-purple-600" />
+        <div className="w-16 h-16 bg-[#255F38] rounded-full flex items-center justify-center mx-auto">
+          <Send className="w-8 h-8 text-white" />
         </div>
-        <h2 className="text-xl font-semibold text-gray-900">Outreach Message</h2>
-        <p className="text-gray-600">Craft your initial outreach template</p>
+        <h2 className="text-xl font-semibold text-white">Outreach Message</h2>
+        <p className="text-gray-400">Craft your initial outreach template</p>
       </div>
 
       {/* Initial Message */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <label htmlFor="initial-message" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="initial-message" className="block text-sm font-medium text-white">
             <div className="flex items-center space-x-2">
               <MessageSquare className="w-4 h-4" />
               <span>Initial Message *</span>
@@ -93,7 +93,7 @@ const OutreachMessage = ({ data, onChange, validation, campaignData }) => {
           </label>
           <button
             onClick={() => setShowVariables(!showVariables)}
-            className="text-sm text-blue-600 hover:text-blue-800 flex items-center space-x-1"
+            className="text-sm text-[#1F7D53] hover:text-[#255F38] flex items-center space-x-1"
           >
             <Plus className="w-4 h-4" />
             <span>Add Variable</span>
@@ -102,17 +102,17 @@ const OutreachMessage = ({ data, onChange, validation, campaignData }) => {
 
         {/* Variable Suggestions */}
         {showVariables && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
-            <h4 className="text-sm font-medium text-blue-900">Available Variables:</h4>
+          <div className="bg-[#1F7D53] border border-[#255F38] rounded-lg p-4 space-y-2">
+            <h4 className="text-sm font-medium text-white">Available Variables:</h4>
             <div className="grid grid-cols-2 gap-2">
               {VARIABLE_SUGGESTIONS.map((item) => (
                 <button
                   key={item.variable}
                   onClick={() => insertVariable(item.variable)}
-                  className="text-left p-2 bg-white border border-blue-200 rounded hover:bg-blue-50 transition-colors"
+                  className="text-left p-2 bg-black border border-[#255F38] rounded hover:bg-[#255F38] transition-colors"
                 >
-                  <div className="font-mono text-sm text-blue-700">{item.variable}</div>
-                  <div className="text-xs text-blue-600">{item.description}</div>
+                  <div className="font-mono text-sm text-[#1F7D53]">{item.variable}</div>
+                  <div className="text-xs text-gray-400">{item.description}</div>
                 </button>
               ))}
             </div>
@@ -125,23 +125,23 @@ const OutreachMessage = ({ data, onChange, validation, campaignData }) => {
           onChange={handleInitialMessageChange}
           placeholder={`Hey {{name}}, this is ${getPersonaName()} from ${getTeamName()}! We're excited to help you achieve your ambitions. What's your #1 goal this month?`}
           rows={4}
-          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none font-mono text-sm ${
-            isFieldInvalid('initialMessage') ? 'border-red-300 bg-red-50' : 'border-gray-300'
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#1F7D53] focus:border-transparent transition-colors resize-none font-mono text-sm bg-black text-white placeholder-gray-500 ${
+            isFieldInvalid('initialMessage') ? 'border-red-500 bg-red-900' : 'border-[#255F38]'
           }`}
           aria-describedby={isFieldInvalid('initialMessage') ? 'message-error' : undefined}
         />
         {isFieldInvalid('initialMessage') && (
-          <p id="message-error" className="text-red-600 text-sm">
+          <p id="message-error" className="text-red-400 text-sm">
             Please provide an initial message (minimum 10 characters)
           </p>
         )}
 
         {/* Message Preview */}
         {data.initialMessage && (
-          <div className="bg-gray-50 rounded-lg p-4">
-            <h4 className="text-sm font-medium text-gray-700 mb-2">Preview:</h4>
-            <div className="bg-white rounded-lg p-3 border">
-              <p className="text-sm text-gray-800 whitespace-pre-wrap">
+          <div className="bg-[#1F1F1F] rounded-lg p-4">
+            <h4 className="text-sm font-medium text-white mb-2">Preview:</h4>
+            <div className="bg-black rounded-lg p-3 border border-[#255F38]">
+              <p className="text-sm text-gray-300 whitespace-pre-wrap">
                 {previewMessage()}
               </p>
             </div>
@@ -157,16 +157,16 @@ const OutreachMessage = ({ data, onChange, validation, campaignData }) => {
             type="checkbox"
             checked={data.hasOptOut}
             onChange={handleOptOutToggle}
-            className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+            className="w-4 h-4 text-[#1F7D53] bg-black border-[#255F38] rounded focus:ring-[#1F7D53] focus:ring-2"
           />
-          <label htmlFor="opt-out-toggle" className="flex items-center space-x-2 text-sm font-medium text-gray-700">
+          <label htmlFor="opt-out-toggle" className="flex items-center space-x-2 text-sm font-medium text-white">
             <UserX className="w-4 h-4" />
             <span>Give opt-out option to users</span>
           </label>
         </div>
         {data.hasOptOut && (
-          <div className="ml-7 p-3 bg-green-50 border border-green-200 rounded-lg">
-            <p className="text-sm text-green-800">
+          <div className="ml-7 p-3 bg-[#1F7D53] border border-[#255F38] rounded-lg">
+            <p className="text-sm text-white">
               ✓ An opt-out option will be automatically added to your messages to comply with messaging regulations.
             </p>
           </div>
@@ -175,7 +175,7 @@ const OutreachMessage = ({ data, onChange, validation, campaignData }) => {
 
       {/* Follow-up Message */}
       <div className="space-y-2">
-        <label htmlFor="followup-message" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="followup-message" className="block text-sm font-medium text-white">
           Followup Message (Optional)
         </label>
         <textarea
@@ -184,38 +184,38 @@ const OutreachMessage = ({ data, onChange, validation, campaignData }) => {
           onChange={handleFollowUpMessageChange}
           placeholder="Hi there! I'm following up to see if you had a chance to think about your goals this month. Would love to chat"
           rows={3}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
+          className="w-full px-4 py-3 border border-[#255F38] rounded-lg focus:ring-2 focus:ring-[#1F7D53] focus:border-transparent transition-colors resize-none bg-black text-white placeholder-gray-500"
         />
       </div>
 
       {/* Message Statistics */}
       {data.initialMessage && (
-        <div className="bg-gray-50 rounded-lg p-4">
-          <h4 className="text-sm font-medium text-gray-700 mb-3">Message Statistics:</h4>
+        <div className="bg-[#1F1F1F] rounded-lg p-4">
+          <h4 className="text-sm font-medium text-white mb-3">Message Statistics:</h4>
           <div className="grid grid-cols-3 gap-4">
             <div className="text-center">
-              <div className="text-lg font-semibold text-gray-900">
+              <div className="text-lg font-semibold text-white">
                 {data.initialMessage.length}
               </div>
-              <div className="text-xs text-gray-600">Characters</div>
+              <div className="text-xs text-gray-400">Characters</div>
             </div>
             <div className="text-center">
-              <div className="text-lg font-semibold text-gray-900">
+              <div className="text-lg font-semibold text-white">
                 {data.initialMessage.split(' ').filter(word => word.length > 0).length}
               </div>
-              <div className="text-xs text-gray-600">Words</div>
+              <div className="text-xs text-gray-400">Words</div>
             </div>
             <div className="text-center">
               <div className={`text-lg font-semibold ${
-                data.initialMessage.length > 160 ? 'text-amber-600' : 'text-green-600'
+                data.initialMessage.length > 160 ? 'text-amber-400' : 'text-[#1F7D53]'
               }`}>
                 {data.initialMessage.length <= 160 ? '✓' : '⚠️'}
               </div>
-              <div className="text-xs text-gray-600">SMS Length</div>
+              <div className="text-xs text-gray-400">SMS Length</div>
             </div>
           </div>
           {data.initialMessage.length > 160 && (
-            <p className="text-xs text-amber-600 mt-2 text-center">
+            <p className="text-xs text-amber-400 mt-2 text-center">
               Message exceeds standard SMS length (160 characters)
             </p>
           )}
@@ -224,12 +224,12 @@ const OutreachMessage = ({ data, onChange, validation, campaignData }) => {
 
       {/* Validation Summary */}
       {validation === false && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="bg-red-900 border border-red-500 rounded-lg p-4">
           <div className="flex items-start space-x-3">
-            <div className="w-5 h-5 text-red-500 mt-0.5">⚠️</div>
+            <div className="w-5 h-5 text-red-400 mt-0.5">⚠️</div>
             <div>
-              <h4 className="text-red-800 font-medium">Please complete required fields</h4>
-              <p className="text-red-700 text-sm mt-1">
+              <h4 className="text-red-400 font-medium">Please complete required fields</h4>
+              <p className="text-red-300 text-sm mt-1">
                 An initial outreach message is required to proceed.
               </p>
             </div>

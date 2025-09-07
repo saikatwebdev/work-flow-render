@@ -146,12 +146,12 @@ const CreateCampaignModal = ({ isOpen, onClose, onSave }) => {
   const isFirstStep = currentStep === 0;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="bg-white rounded-2xl shadow-2xl w-full max-w-7xl h-[90vh] flex overflow-hidden"
+        className="bg-black border border-[#255F38] rounded-2xl shadow-2xl shadow-[#255F38]/20 w-full max-w-7xl h-[90vh] flex overflow-hidden"
         role="dialog"
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
@@ -159,29 +159,29 @@ const CreateCampaignModal = ({ isOpen, onClose, onSave }) => {
         {/* Left Panel - Form */}
         <div className="flex-1 flex flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          <div className="flex items-center justify-between p-6 border-b border-[#255F38]">
             <div className="flex items-center space-x-4">
               {!isFirstStep && (
                 <button
                   onClick={handlePrevious}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-2 hover:bg-[#255F38] hover:bg-opacity-20 rounded-lg transition-colors text-white"
                   aria-label="Previous step"
                 >
                   <ArrowLeft className="w-5 h-5" />
                 </button>
               )}
               <div>
-                <h1 id="modal-title" className="text-2xl font-bold text-gray-900">
+                <h1 id="modal-title" className="text-2xl font-bold text-white">
                   {STEPS[currentStep].title}
                 </h1>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400">
                   Step {currentStep + 1} of {STEPS.length}
                 </p>
               </div>
             </div>
             <button
               onClick={handleClose}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-[#255F38] hover:bg-opacity-20 rounded-lg transition-colors text-white"
               aria-label="Close modal"
             >
               <X className="w-6 h-6" />
@@ -189,15 +189,15 @@ const CreateCampaignModal = ({ isOpen, onClose, onSave }) => {
           </div>
 
           {/* Progress Bar */}
-          <div className="px-6 py-4 border-b border-gray-200">
+          <div className="px-6 py-4 border-b border-[#255F38]">
             <div className="flex space-x-2">
               {STEPS.map((step, index) => (
                 <div
                   key={step.id}
                   className={`flex-1 h-2 rounded-full transition-colors ${
                     index <= currentStep
-                      ? 'bg-blue-500'
-                      : 'bg-gray-200'
+                      ? 'bg-gradient-to-r from-[#1F7D53] to-[#255F38]'
+                      : 'bg-gray-600'
                   }`}
                 />
               ))}
@@ -226,10 +226,10 @@ const CreateCampaignModal = ({ isOpen, onClose, onSave }) => {
           </div>
 
           {/* Footer */}
-          <div className="flex items-center justify-between p-6 border-t border-gray-200">
+          <div className="flex items-center justify-between p-6 border-t border-[#255F38]">
             <button
               onClick={handleClose}
-              className="px-6 py-2 text-gray-600 hover:text-gray-800 transition-colors"
+              className="px-6 py-2 text-gray-400 hover:text-white transition-colors"
             >
               Cancel
             </button>
@@ -237,7 +237,7 @@ const CreateCampaignModal = ({ isOpen, onClose, onSave }) => {
               {!isLastStep ? (
                 <button
                   onClick={handleNext}
-                  className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 flex items-center space-x-2"
+                  className="px-6 py-2 bg-gradient-to-r from-[#1F7D53] to-[#255F38] text-white rounded-lg hover:from-[#255F38] hover:to-[#1F7D53] transition-all duration-200 flex items-center space-x-2"
                 >
                   <span>Next</span>
                   <ArrowRight className="w-4 h-4" />
@@ -246,7 +246,7 @@ const CreateCampaignModal = ({ isOpen, onClose, onSave }) => {
                 <button
                   onClick={handleFinish}
                   disabled={isSubmitting}
-                  className={`px-6 py-2 rounded-lg transition-all duration-200 text-white ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700'}`}
+                  className={`px-6 py-2 rounded-lg transition-all duration-200 text-white ${isSubmitting ? 'bg-gray-600 cursor-not-allowed' : 'bg-gradient-to-r from-[#1F7D53] to-[#255F38] hover:from-[#255F38] hover:to-[#1F7D53]'}`}
                 >
                   {isSubmitting ? 'Creating…' : 'Create Campaign'}
                 </button>
@@ -256,7 +256,7 @@ const CreateCampaignModal = ({ isOpen, onClose, onSave }) => {
         </div>
 
         {/* Right Panel - Chat Preview */}
-        <div className="w-96 border-l border-gray-200 bg-gray-50">
+        <div className="w-96 border-l border-[#255F38] bg-black">
           <ChatPreview campaignData={campaignData} currentStep={currentStep} />
         </div>
       </motion.div>

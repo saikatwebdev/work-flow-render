@@ -72,13 +72,13 @@ const ChatPreview = ({ campaignData, currentStep }) => {
   const stepPreview = getStepPreview();
 
   return (
-    <div className="h-full flex flex-col bg-gray-50">
+    <div className="h-full flex flex-col bg-black">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 bg-white">
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+      <div className="p-4 border-b border-[#255F38] bg-[#1F1F1F]">
+        <h3 className="text-lg font-semibold text-white mb-2">
           Simulate and test how your prospects might chat!
         </h3>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-400">
           Preview how your campaign will look to recipients
         </p>
       </div>
@@ -87,12 +87,12 @@ const ChatPreview = ({ campaignData, currentStep }) => {
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="relative">
           {/* Phone Frame */}
-          <div className="w-80 h-[600px] bg-black rounded-[3rem] p-2 shadow-2xl">
-            <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden flex flex-col">
+          <div className="w-80 h-[600px] bg-gray-900 rounded-[3rem] p-2 shadow-2xl shadow-[#255F38]/20">
+            <div className="w-full h-full bg-black rounded-[2.5rem] overflow-hidden flex flex-col border border-[#255F38]">
               {/* Status Bar */}
-              <div className="flex items-center justify-between px-6 py-2 bg-gray-50 text-xs">
-                <span className="font-medium">7:28</span>
-                <div className="flex items-center space-x-1">
+              <div className="flex items-center justify-between px-6 py-2 bg-[#1F1F1F] text-xs">
+                <span className="font-medium text-white">7:28</span>
+                <div className="flex items-center space-x-1 text-white">
                   <Signal className="w-3 h-3" />
                   <Wifi className="w-3 h-3" />
                   <Battery className="w-4 h-3" />
@@ -100,7 +100,7 @@ const ChatPreview = ({ campaignData, currentStep }) => {
               </div>
 
               {/* Chat Header */}
-              <div className="flex items-center space-x-3 p-4 bg-green-500 text-white">
+              <div className="flex items-center space-x-3 p-4 bg-[#1F7D53] text-white">
                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                   <span className="text-sm font-medium">
                     {getProductName().charAt(0)}
@@ -121,15 +121,15 @@ const ChatPreview = ({ campaignData, currentStep }) => {
               </div>
 
               {/* Chat Content */}
-              <div className="flex-1 p-4 space-y-4 overflow-y-auto bg-gray-50">
+              <div className="flex-1 p-4 space-y-4 overflow-y-auto bg-black">
                 {/* Step-specific preview */}
                 {currentStep >= 3 && (
                   <div className="flex justify-start">
-                    <div className="max-w-xs bg-white rounded-lg p-3 shadow-sm">
-                      <p className="text-sm text-gray-800 whitespace-pre-wrap">
+                    <div className="max-w-xs bg-[#1F1F1F] border border-[#255F38] rounded-lg p-3 shadow-sm">
+                      <p className="text-sm text-white whitespace-pre-wrap">
                         {getPreviewMessage()}
                       </p>
-                      <p className="text-xs text-gray-500 mt-1">7:31 PM</p>
+                      <p className="text-xs text-gray-400 mt-1">7:31 PM</p>
                     </div>
                   </div>
                 )}
@@ -137,7 +137,7 @@ const ChatPreview = ({ campaignData, currentStep }) => {
                 {/* Sample response */}
                 {currentStep >= 3 && (
                   <div className="flex justify-end">
-                    <div className="max-w-xs bg-green-500 text-white rounded-lg p-3">
+                    <div className="max-w-xs bg-[#1F7D53] text-white rounded-lg p-3">
                       <p className="text-sm">
                         Hey! My main goal this month is to improve my productivity and stay more organized with my tasks.
                       </p>
@@ -149,11 +149,11 @@ const ChatPreview = ({ campaignData, currentStep }) => {
                 {/* Flow steps preview */}
                 {currentStep >= 4 && campaignData?.flow?.steps?.length > 0 && (
                   <div className="flex justify-start">
-                    <div className="max-w-xs bg-white rounded-lg p-3 shadow-sm">
-                      <p className="text-sm text-gray-800">
+                    <div className="max-w-xs bg-[#1F1F1F] border border-[#255F38] rounded-lg p-3 shadow-sm">
+                      <p className="text-sm text-white">
                         That's awesome! {getProductName()} is perfect for that. Here are some tips to get started...
                       </p>
-                      <p className="text-xs text-gray-500 mt-1">7:35 PM</p>
+                      <p className="text-xs text-gray-400 mt-1">7:35 PM</p>
                     </div>
                   </div>
                 )}
@@ -161,14 +161,14 @@ const ChatPreview = ({ campaignData, currentStep }) => {
                 {/* Links preview */}
                 {currentStep >= 5 && campaignData?.files?.links?.length > 0 && (
                   <div className="flex justify-start">
-                    <div className="max-w-xs bg-white rounded-lg p-3 shadow-sm border-l-4 border-blue-500">
-                      <p className="text-sm font-medium text-gray-900">
+                    <div className="max-w-xs bg-[#1F1F1F] border border-[#255F38] rounded-lg p-3 shadow-sm border-l-4 border-l-[#1F7D53]">
+                      <p className="text-sm font-medium text-white">
                         {campaignData.files.links[0].title}
                       </p>
-                      <p className="text-xs text-blue-600 truncate">
+                      <p className="text-xs text-[#1F7D53] truncate">
                         {campaignData.files.links[0].url}
                       </p>
-                      <p className="text-xs text-gray-500 mt-1">7:36 PM</p>
+                      <p className="text-xs text-gray-400 mt-1">7:36 PM</p>
                     </div>
                   </div>
                 )}
@@ -176,8 +176,8 @@ const ChatPreview = ({ campaignData, currentStep }) => {
                 {/* Opt-out message */}
                 {currentStep >= 3 && campaignData?.message?.hasOptOut && (
                   <div className="flex justify-start">
-                    <div className="max-w-xs bg-gray-100 rounded-lg p-2">
-                      <p className="text-xs text-gray-600 italic">
+                    <div className="max-w-xs bg-gray-800 rounded-lg p-2">
+                      <p className="text-xs text-gray-400 italic">
                         Reply STOP to opt out of messages
                       </p>
                     </div>
@@ -186,12 +186,12 @@ const ChatPreview = ({ campaignData, currentStep }) => {
               </div>
 
               {/* Input Area */}
-              <div className="p-3 bg-white border-t border-gray-200">
+              <div className="p-3 bg-[#1F1F1F] border-t border-[#255F38]">
                 <div className="flex items-center space-x-2">
-                  <div className="flex-1 bg-gray-100 rounded-full px-4 py-2">
+                  <div className="flex-1 bg-black border border-[#255F38] rounded-full px-4 py-2">
                     <p className="text-sm text-gray-500">Type a message...</p>
                   </div>
-                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-[#1F7D53] rounded-full flex items-center justify-center">
                     <span className="text-white text-sm">➤</span>
                   </div>
                 </div>
@@ -202,10 +202,10 @@ const ChatPreview = ({ campaignData, currentStep }) => {
       </div>
 
       {/* Step Info Panel */}
-      <div className="p-4 bg-white border-t border-gray-200">
-        <h4 className="font-medium text-gray-900 mb-2">{stepPreview.title}</h4>
-        <div className="bg-gray-50 rounded-lg p-3">
-          <p className="text-sm text-gray-700 whitespace-pre-wrap">
+      <div className="p-4 bg-[#1F1F1F] border-t border-[#255F38]">
+        <h4 className="font-medium text-white mb-2">{stepPreview.title}</h4>
+        <div className="bg-black border border-[#255F38] rounded-lg p-3">
+          <p className="text-sm text-gray-300 whitespace-pre-wrap">
             {stepPreview.content}
           </p>
         </div>

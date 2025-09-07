@@ -87,11 +87,11 @@ const CampaignsList = () => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'active': return 'bg-green-100 text-green-800';
-      case 'paused': return 'bg-yellow-100 text-yellow-800';
-      case 'draft': return 'bg-gray-100 text-gray-800';
-      case 'completed': return 'bg-blue-100 text-blue-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'active': return 'bg-[#1F7D53] text-white';
+      case 'paused': return 'bg-yellow-600 text-white';
+      case 'draft': return 'bg-gray-600 text-white';
+      case 'completed': return 'bg-[#255F38] text-white';
+      default: return 'bg-gray-600 text-white';
     }
   };
 
@@ -112,19 +112,19 @@ const CampaignsList = () => {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-6 bg-black text-white min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Campaigns</h1>
-          <p className="text-gray-600 mt-1">Manage your outreach campaigns</p>
+          <h1 className="text-3xl font-bold text-white">Campaigns</h1>
+          <p className="text-gray-400 mt-1">Manage your outreach campaigns</p>
         </div>
         <button
           onClick={() => {
             setSelectedCampaign(null);
             setIsModalOpen(true);
           }}
-          className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+          className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-[#1F7D53] to-[#255F38] text-white rounded-lg hover:from-[#255F38] hover:to-[#1F7D53] transition-all duration-200 shadow-lg hover:shadow-xl"
         >
           <Plus className="w-5 h-5" />
           <span>New Campaign</span>
@@ -140,7 +140,7 @@ const CampaignsList = () => {
             placeholder="Search campaigns..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 border border-[#255F38] rounded-lg focus:ring-2 focus:ring-[#1F7D53] focus:border-transparent bg-black text-white placeholder-gray-500"
           />
         </div>
         <div className="flex items-center space-x-2">
@@ -148,13 +148,13 @@ const CampaignsList = () => {
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-3 py-2 border border-[#255F38] rounded-lg focus:ring-2 focus:ring-[#1F7D53] focus:border-transparent bg-black text-white"
           >
-            <option value="all">All Status</option>
-            <option value="draft">Draft</option>
-            <option value="active">Active</option>
-            <option value="paused">Paused</option>
-            <option value="completed">Completed</option>
+            <option value="all" className="bg-black">All Status</option>
+            <option value="draft" className="bg-black">Draft</option>
+            <option value="active" className="bg-black">Active</option>
+            <option value="paused" className="bg-black">Paused</option>
+            <option value="completed" className="bg-black">Completed</option>
           </select>
         </div>
       </div>
@@ -162,13 +162,13 @@ const CampaignsList = () => {
       {/* Campaigns Grid */}
       {filteredCampaigns.length === 0 ? (
         <div className="text-center py-12">
-          <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-24 h-24 bg-[#1F1F1F] rounded-full flex items-center justify-center mx-auto mb-4">
             <Plus className="w-12 h-12 text-gray-400" />
           </div>
-          <h3 className="text-xl font-medium text-gray-900 mb-2">
+          <h3 className="text-xl font-medium text-white mb-2">
             {campaigns.length === 0 ? 'No campaigns yet' : 'No campaigns match your search'}
           </h3>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-400 mb-6">
             {campaigns.length === 0 
               ? 'Create your first campaign to start reaching out to prospects'
               : 'Try adjusting your search or filter criteria'
@@ -177,7 +177,7 @@ const CampaignsList = () => {
           {campaigns.length === 0 && (
             <button
               onClick={() => setIsModalOpen(true)}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-6 py-3 bg-[#1F7D53] text-white rounded-lg hover:bg-[#255F38] transition-colors"
             >
               Create Your First Campaign
             </button>
@@ -192,12 +192,12 @@ const CampaignsList = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow"
+                className="bg-[#1F1F1F] rounded-lg border border-[#255F38] p-6 hover:shadow-lg hover:shadow-[#255F38]/20 transition-shadow"
               >
                 {/* Campaign Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                    <h3 className="text-lg font-semibold text-white mb-1">
                       {campaign?.name || extractCampaignName(campaign?.brief?.description || '')}
                     </h3>
                     <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(campaign.status)}`}>
@@ -205,7 +205,7 @@ const CampaignsList = () => {
                     </span>
                   </div>
                   <div className="relative">
-                    <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
+                    <button className="p-1 text-gray-400 hover:text-white transition-colors">
                       <MoreVertical className="w-5 h-5" />
                     </button>
                   </div>
@@ -214,12 +214,12 @@ const CampaignsList = () => {
                 {/* Campaign Details */}
                 <div className="space-y-3 mb-4">
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Target Audience</p>
-                    <p className="text-sm font-medium text-gray-900">{campaign?.targetAudience || campaign?.leads?.targetAudience || '—'}</p>
+                    <p className="text-sm text-gray-400 mb-1">Target Audience</p>
+                    <p className="text-sm font-medium text-white">{campaign?.targetAudience || campaign?.leads?.targetAudience || '—'}</p>
                   </div>
                   
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Channels</p>
+                    <p className="text-sm text-gray-400 mb-1">Channels</p>
                     <div className="flex space-x-1">
                       {getCampaignChannels(campaign).map((channel) => (
                         <span key={channel} className="text-lg" title={channel}>
@@ -230,22 +230,22 @@ const CampaignsList = () => {
                   </div>
 
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Persona</p>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm text-gray-400 mb-1">Persona</p>
+                    <p className="text-sm font-medium text-white">
                       {(campaign?.persona?.name || 'Persona')} • {(campaign?.persona?.tone || 'Neutral')}
                     </p>
                   </div>
                 </div>
 
                 {/* Campaign Stats */}
-                <div className="grid grid-cols-2 gap-4 mb-4 p-3 bg-gray-50 rounded-lg">
+                <div className="grid grid-cols-2 gap-4 mb-4 p-3 bg-black rounded-lg border border-[#255F38]">
                   <div className="text-center">
-                    <div className="text-lg font-semibold text-gray-900">{(campaign?.stats?.sent ?? 0)}</div>
-                    <div className="text-xs text-gray-600">Sent</div>
+                    <div className="text-lg font-semibold text-white">{(campaign?.stats?.sent ?? 0)}</div>
+                    <div className="text-xs text-gray-400">Sent</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-lg font-semibold text-gray-900">{(campaign?.stats?.replied ?? 0)}</div>
-                    <div className="text-xs text-gray-600">Replied</div>
+                    <div className="text-lg font-semibold text-white">{(campaign?.stats?.replied ?? 0)}</div>
+                    <div className="text-xs text-gray-400">Replied</div>
                   </div>
                 </div>
 
@@ -255,8 +255,8 @@ const CampaignsList = () => {
                     onClick={() => handleToggleCampaignStatus(campaign.id)}
                     className={`flex-1 flex items-center justify-center space-x-1 px-3 py-2 rounded text-sm font-medium transition-colors ${
                       campaign.status === 'active'
-                        ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
-                        : 'bg-green-100 text-green-800 hover:bg-green-200'
+                        ? 'bg-yellow-600 text-white hover:bg-yellow-700'
+                        : 'bg-[#1F7D53] text-white hover:bg-[#255F38]'
                     }`}
                   >
                     {campaign.status === 'active' ? (
@@ -273,14 +273,14 @@ const CampaignsList = () => {
                   </button>
                   <button
                     onClick={() => handleEditCampaign(campaign)}
-                    className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                    className="p-2 text-gray-400 hover:text-[#1F7D53] hover:bg-[#255F38] hover:bg-opacity-20 rounded transition-colors"
                     title="Edit campaign"
                   >
                     <Edit className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => handleDeleteCampaign(campaign.id)}
-                    className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                    className="p-2 text-gray-400 hover:text-red-400 hover:bg-red-500 hover:bg-opacity-20 rounded transition-colors"
                     title="Delete campaign"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -288,7 +288,7 @@ const CampaignsList = () => {
                 </div>
 
                 {/* Created Date */}
-                <div className="mt-3 pt-3 border-t border-gray-100">
+                <div className="mt-3 pt-3 border-t border-[#255F38]">
                   <p className="text-xs text-gray-500">
                     Created {campaign?.createdAt ? new Date(campaign.createdAt).toLocaleDateString() : '—'}
                   </p>
