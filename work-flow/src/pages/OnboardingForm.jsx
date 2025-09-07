@@ -187,61 +187,61 @@ const OnboardingForm = () => {
   const renderStep1 = () => (
     <div className="space-y-6">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-[#255F38] mb-2">
           Business Name *
         </label>
         <input
           type="text"
           value={formData.businessName}
           onChange={(e) => handleInputChange('businessName', e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+          className="w-full p-3 border border-[#255F38] rounded-lg bg-black text-white focus:ring-2 focus:ring-[#1F7D53] focus:border-[#1F7D53] transition-all placeholder-gray-400"
           placeholder="Enter your business name"
         />
-        {errors.businessName && <p className="text-red-500 text-sm mt-1">{errors.businessName}</p>}
+        {errors.businessName && <p className="text-red-400 text-sm mt-1">{errors.businessName}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-[#255F38] mb-2">
           Your Name *
         </label>
         <input
           type="text"
           value={formData.userName}
           onChange={(e) => handleInputChange('userName', e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+          className="w-full p-3 border border-[#255F38] rounded-lg bg-black text-white focus:ring-2 focus:ring-[#1F7D53] focus:border-[#1F7D53] transition-all placeholder-gray-400"
           placeholder="Enter your full name"
         />
-        {errors.userName && <p className="text-red-500 text-sm mt-1">{errors.userName}</p>}
+        {errors.userName && <p className="text-red-400 text-sm mt-1">{errors.userName}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-[#255F38] mb-2">
           What does your business sell? *
         </label>
-        <p className="text-sm text-gray-500 mb-2">Briefly explain your product/service</p>
+        <p className="text-sm text-gray-400 mb-2">Briefly explain your product/service</p>
         <textarea
           value={formData.businessDescription}
           onChange={(e) => handleInputChange('businessDescription', e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+          className="w-full p-3 border border-[#255F38] rounded-lg bg-black text-white focus:ring-2 focus:ring-[#1F7D53] focus:border-[#1F7D53] transition-all placeholder-gray-400"
           rows="3"
           placeholder="Describe what your business offers..."
         />
-        {errors.businessDescription && <p className="text-red-500 text-sm mt-1">{errors.businessDescription}</p>}
+        {errors.businessDescription && <p className="text-red-400 text-sm mt-1">{errors.businessDescription}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-[#255F38] mb-2">
           Who is your ideal customer? *
         </label>
-        <p className="text-sm text-gray-500 mb-2">E.g. gym owners, ecommerce brands, real estate agents, etc.</p>
+        <p className="text-sm text-gray-400 mb-2">E.g. gym owners, ecommerce brands, real estate agents, etc.</p>
         <input
           type="text"
           value={formData.idealCustomer}
           onChange={(e) => handleInputChange('idealCustomer', e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+          className="w-full p-3 border border-[#255F38] rounded-lg bg-black text-white focus:ring-2 focus:ring-[#1F7D53] focus:border-[#1F7D53] transition-all placeholder-gray-400"
           placeholder="Describe your ideal customer..."
         />
-        {errors.idealCustomer && <p className="text-red-500 text-sm mt-1">{errors.idealCustomer}</p>}
+        {errors.idealCustomer && <p className="text-red-400 text-sm mt-1">{errors.idealCustomer}</p>}
       </div>
     </div>
   );
@@ -249,7 +249,7 @@ const OnboardingForm = () => {
   const renderStep2 = () => (
     <div className="space-y-6">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
+        <label className="block text-sm font-medium text-[#255F38] mb-3">
           Where do you want leads from? *
         </label>
         <div className="space-y-2">
@@ -259,9 +259,9 @@ const OnboardingForm = () => {
                 type="checkbox"
                 checked={formData.leadSources.includes(option)}
                 onChange={(e) => handleCheckboxChange('leadSources', option, e.target.checked)}
-                className="mr-3 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                className="mr-3 h-4 w-4 text-[#255F38] focus:ring-[#1F7D53] border-[#255F38] rounded bg-black"
               />
-              <span className="text-gray-700">{option}</span>
+              <span className="text-white">{option}</span>
             </label>
           ))}
           <div className="flex items-center">
@@ -269,24 +269,24 @@ const OnboardingForm = () => {
               type="checkbox"
               checked={formData.leadSources.includes('Other')}
               onChange={(e) => handleCheckboxChange('leadSources', 'Other', e.target.checked)}
-              className="mr-3 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+              className="mr-3 h-4 w-4 text-[#255F38] focus:ring-[#1F7D53] border-[#255F38] rounded bg-black"
             />
-            <span className="text-gray-700 mr-2">Other:</span>
+            <span className="text-white mr-2">Other:</span>
             <input
               type="text"
               value={formData.leadSourcesOther}
               onChange={(e) => handleInputChange('leadSourcesOther', e.target.value)}
-              className="flex-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="flex-1 p-2 border border-[#255F38] rounded bg-black text-white focus:ring-2 focus:ring-[#1F7D53] focus:border-[#1F7D53] placeholder-gray-400"
               placeholder="Specify other..."
               disabled={!formData.leadSources.includes('Other')}
             />
           </div>
         </div>
-        {errors.leadSources && <p className="text-red-500 text-sm mt-1">{errors.leadSources}</p>}
+        {errors.leadSources && <p className="text-red-400 text-sm mt-1">{errors.leadSources}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
+        <label className="block text-sm font-medium text-[#255F38] mb-3">
           What is your average deal size or main offer price? *
         </label>
         <div className="space-y-2">
@@ -303,13 +303,13 @@ const OnboardingForm = () => {
                 value={option}
                 checked={formData.dealSize === option}
                 onChange={(e) => handleInputChange('dealSize', e.target.value)}
-                className="mr-3 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300"
+                className="mr-3 h-4 w-4 text-[#255F38] focus:ring-[#1F7D53] border-[#255F38] bg-black"
               />
-              <span className="text-gray-700">{option}</span>
+              <span className="text-white">{option}</span>
             </label>
           ))}
         </div>
-        {errors.dealSize && <p className="text-red-500 text-sm mt-1">{errors.dealSize}</p>}
+        {errors.dealSize && <p className="text-red-400 text-sm mt-1">{errors.dealSize}</p>}
       </div>
     </div>
   );
@@ -317,7 +317,7 @@ const OnboardingForm = () => {
   const renderStep3 = () => (
     <div className="space-y-6">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
+        <label className="block text-sm font-medium text-[#255F38] mb-3">
           Which platforms do you use to talk to clients? *
         </label>
         <div className="space-y-2">
@@ -327,9 +327,9 @@ const OnboardingForm = () => {
                 type="checkbox"
                 checked={formData.communicationPlatforms.includes(option)}
                 onChange={(e) => handleCheckboxChange('communicationPlatforms', option, e.target.checked)}
-                className="mr-3 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                className="mr-3 h-4 w-4 text-[#255F38] focus:ring-[#1F7D53] border-[#255F38] rounded bg-black"
               />
-              <span className="text-gray-700">{option}</span>
+              <span className="text-white">{option}</span>
             </label>
           ))}
           <div className="flex items-center">
@@ -337,24 +337,24 @@ const OnboardingForm = () => {
               type="checkbox"
               checked={formData.communicationPlatforms.includes('Others')}
               onChange={(e) => handleCheckboxChange('communicationPlatforms', 'Others', e.target.checked)}
-              className="mr-3 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+              className="mr-3 h-4 w-4 text-[#255F38] focus:ring-[#1F7D53] border-[#255F38] rounded bg-black"
             />
-            <span className="text-gray-700 mr-2">Others:</span>
+            <span className="text-white mr-2">Others:</span>
             <input
               type="text"
               value={formData.communicationOther}
               onChange={(e) => handleInputChange('communicationOther', e.target.value)}
-              className="flex-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="flex-1 p-2 border border-[#255F38] rounded bg-black text-white focus:ring-2 focus:ring-[#1F7D53] focus:border-[#1F7D53] placeholder-gray-400"
               placeholder="Specify other platforms..."
               disabled={!formData.communicationPlatforms.includes('Others')}
             />
           </div>
         </div>
-        {errors.communicationPlatforms && <p className="text-red-500 text-sm mt-1">{errors.communicationPlatforms}</p>}
+        {errors.communicationPlatforms && <p className="text-red-400 text-sm mt-1">{errors.communicationPlatforms}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
+        <label className="block text-sm font-medium text-[#255F38] mb-3">
           How should we handle your leads? *
         </label>
         <div className="space-y-2">
@@ -370,28 +370,28 @@ const OnboardingForm = () => {
                 value={option}
                 checked={formData.leadHandling === option}
                 onChange={(e) => handleInputChange('leadHandling', e.target.value)}
-                className="mr-3 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300"
+                className="mr-3 h-4 w-4 text-[#255F38] focus:ring-[#1F7D53] border-[#255F38] bg-black"
               />
-              <span className="text-gray-700">{option}</span>
+              <span className="text-white">{option}</span>
             </label>
           ))}
         </div>
-        {errors.leadHandling && <p className="text-red-500 text-sm mt-1">{errors.leadHandling}</p>}
+        {errors.leadHandling && <p className="text-red-400 text-sm mt-1">{errors.leadHandling}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-[#255F38] mb-2">
           Monthly sales goal? *
         </label>
-        <p className="text-sm text-gray-500 mb-2">₹ or $ amount you want to earn per month</p>
+        <p className="text-sm text-gray-400 mb-2">₹ or $ amount you want to earn per month</p>
         <input
           type="text"
           value={formData.salesGoal}
           onChange={(e) => handleInputChange('salesGoal', e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+          className="w-full p-3 border border-[#255F38] rounded-lg bg-black text-white focus:ring-2 focus:ring-[#1F7D53] focus:border-[#1F7D53] transition-all placeholder-gray-400"
           placeholder="e.g., ₹50,000 or $1,000"
         />
-        {errors.salesGoal && <p className="text-red-500 text-sm mt-1">{errors.salesGoal}</p>}
+        {errors.salesGoal && <p className="text-red-400 text-sm mt-1">{errors.salesGoal}</p>}
       </div>
     </div>
   );
@@ -399,10 +399,10 @@ const OnboardingForm = () => {
   const renderStep4 = () => (
     <div className="space-y-6">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-[#255F38] mb-2">
           Top 3 customer questions or objections?
         </label>
-        <p className="text-sm text-gray-500 mb-3">Helps us train your AI sales agent</p>
+        <p className="text-sm text-gray-400 mb-3">Helps us train your AI sales agent</p>
         <div className="space-y-3">
           {formData.customerQuestions.map((question, index) => (
             <input
@@ -410,7 +410,7 @@ const OnboardingForm = () => {
               type="text"
               value={question}
               onChange={(e) => handleCustomerQuestionChange(index, e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              className="w-full p-3 border border-[#255F38] rounded-lg bg-black text-white focus:ring-2 focus:ring-[#1F7D53] focus:border-[#1F7D53] transition-all placeholder-gray-400"
               placeholder={`Question/Objection ${index + 1}`}
             />
           ))}
@@ -418,20 +418,20 @@ const OnboardingForm = () => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-[#255F38] mb-2">
           Drop your website or active social media links:
         </label>
         <input
           type="text"
           value={formData.websiteLinks}
           onChange={(e) => handleInputChange('websiteLinks', e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+          className="w-full p-3 border border-[#255F38] rounded-lg bg-black text-white focus:ring-2 focus:ring-[#1F7D53] focus:border-[#1F7D53] transition-all placeholder-gray-400"
           placeholder="https://yourwebsite.com or social media links"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
+        <label className="block text-sm font-medium text-[#255F38] mb-3">
           How urgently do you want to start getting leads? *
         </label>
         <div className="space-y-2">
@@ -448,26 +448,26 @@ const OnboardingForm = () => {
                 value={option}
                 checked={formData.urgency === option}
                 onChange={(e) => handleInputChange('urgency', e.target.value)}
-                className="mr-3 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300"
+                className="mr-3 h-4 w-4 text-[#255F38] focus:ring-[#1F7D53] border-[#255F38] bg-black"
               />
-              <span className="text-gray-700">{option}</span>
+              <span className="text-white">{option}</span>
             </label>
           ))}
         </div>
-        {errors.urgency && <p className="text-red-500 text-sm mt-1">{errors.urgency}</p>}
+        {errors.urgency && <p className="text-red-400 text-sm mt-1">{errors.urgency}</p>}
       </div>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl p-8">
+    <div className="min-h-screen bg-black flex items-center justify-center p-4">
+      <div className="bg-black border-2 border-[#255F38] rounded-2xl shadow-2xl w-full max-w-2xl p-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2">
             🚀 Welcome to Work Flow!
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-400">
             Let's get you set up in under 2 mins. Just reply to these questions 👇
           </p>
         </div>
@@ -475,12 +475,12 @@ const OnboardingForm = () => {
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm text-gray-500">Step {currentStep} of {totalSteps}</span>
-            <span className="text-sm text-gray-500">{Math.round((currentStep / totalSteps) * 100)}% Complete</span>
+            <span className="text-sm text-gray-400">Step {currentStep} of {totalSteps}</span>
+            <span className="text-sm text-gray-400">{Math.round((currentStep / totalSteps) * 100)}% Complete</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-gray-700 rounded-full h-2">
             <div 
-              className="bg-gradient-to-r from-purple-500 to-blue-500 h-2 rounded-full transition-all duration-300"
+              className="bg-gradient-to-r from-[#255F38] to-[#1F7D53] h-2 rounded-full transition-all duration-300"
               style={{ width: `${(currentStep / totalSteps) * 100}%` }}
             ></div>
           </div>
@@ -501,8 +501,8 @@ const OnboardingForm = () => {
             disabled={currentStep === 1}
             className={`px-6 py-3 rounded-lg font-medium transition-all ${
               currentStep === 1
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                ? 'bg-gray-700 text-gray-500 cursor-not-allowed'
+                : 'bg-gray-700 text-white hover:bg-gray-600 border border-[#255F38]'
             }`}
           >
             Previous
@@ -511,7 +511,7 @@ const OnboardingForm = () => {
           {currentStep < totalSteps ? (
             <button
               onClick={nextStep}
-              className="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg font-medium hover:from-purple-600 hover:to-blue-600 transition-all transform hover:scale-105"
+              className="px-6 py-3 bg-gradient-to-r from-[#255F38] to-[#1F7D53] text-white rounded-lg font-medium hover:from-[#1F7D53] hover:to-[#255F38] transition-all transform hover:scale-105"
             >
               Next Step
             </button>
@@ -521,8 +521,8 @@ const OnboardingForm = () => {
               disabled={isSubmitting}
               className={`px-8 py-3 rounded-lg font-medium transition-all transform ${
                 isSubmitting
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 hover:scale-105'
+                  ? 'bg-gray-600 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-[#255F38] to-[#1F7D53] hover:from-[#1F7D53] hover:to-[#255F38] hover:scale-105'
               } text-white`}
             >
               {isSubmitting ? 'Submitting...' : 'Submit and Continue 🎉'}
