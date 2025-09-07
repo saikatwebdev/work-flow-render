@@ -43,19 +43,19 @@ const CustomAutomationModal = ({
 
   const getStatusIcon = (status) => {
     switch (status) {
-      case 'active': return <Play className="w-4 h-4 text-green-500" />;
-      case 'paused': return <Pause className="w-4 h-4 text-yellow-500" />;
-      case 'draft': return <FileText className="w-4 h-4 text-gray-500" />;
-      default: return <Settings className="w-4 h-4 text-gray-400" />;
+      case 'active': return <Play className="w-4 h-4 text-[#1F7D53]" />;
+      case 'paused': return <Pause className="w-4 h-4 text-[#255F38]" />;
+      case 'draft': return <FileText className="w-4 h-4 text-gray-400" />;
+      default: return <Settings className="w-4 h-4 text-gray-500" />;
     }
   };
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'active': return 'bg-green-50 border-green-200 text-green-700';
-      case 'paused': return 'bg-yellow-50 border-yellow-200 text-yellow-700';
-      case 'draft': return 'bg-gray-50 border-gray-200 text-gray-700';
-      default: return 'bg-gray-50 border-gray-200 text-gray-700';
+      case 'active': return 'bg-[#1F7D53] bg-opacity-20 border-[#1F7D53] text-[#1F7D53]';
+      case 'paused': return 'bg-[#255F38] bg-opacity-20 border-[#255F38] text-[#255F38]';
+      case 'draft': return 'bg-gray-800 border-gray-600 text-gray-300';
+      default: return 'bg-gray-800 border-gray-600 text-gray-300';
     }
   };
 
@@ -63,7 +63,7 @@ const CustomAutomationModal = ({
 
   return (
     <div 
-      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300 ease-out ${
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300 ease-out bg-black ${
         isAnimating 
           ? ' bg-opacity-50 backdrop-blur-sm' 
           : ' bg-opacity-0 backdrop-blur-sm'
@@ -71,7 +71,7 @@ const CustomAutomationModal = ({
       onClick={handleBackdropClick}
     >
       <div className={`
-        relative bg-white rounded-2xl shadow-2xl w-full max-w-lg
+        relative bg-black rounded-2xl shadow-2xl w-full max-w-lg border border-gray-700
         transform transition-all duration-300 ease-out
         ${isAnimating 
           ? 'scale-100 translate-y-0 opacity-100 rotate-0' 
@@ -79,29 +79,29 @@ const CustomAutomationModal = ({
         }
       `}>
         {/* Header with gradient accent */}
-        <div className="relative overflow-hidden rounded-t-2xl bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-100">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-indigo-500/5"></div>
+        <div className="relative overflow-hidden rounded-t-2xl bg-gray-900 border-b border-gray-700">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#255F38]/10 to-[#1F7D53]/10"></div>
           <div className="relative px-6 py-5">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className={`
                   p-2 rounded-lg transition-all duration-200
-                  ${isEdit ? 'bg-amber-100 text-amber-600' : 'bg-blue-100 text-blue-600'}
+                  ${isEdit ? 'bg-[#255F38] bg-opacity-20 text-[#255F38]' : 'bg-[#1F7D53] bg-opacity-20 text-[#1F7D53]'}
                 `}>
                   {isEdit ? <Settings className="w-5 h-5" /> : <Zap className="w-5 h-5" />}
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900">
+                  <h2 className="text-xl font-bold text-white">
                     {isEdit ? 'Edit Automation' : 'Create Automation'}
                   </h2>
-                  <p className="text-sm text-gray-500 mt-0.5">
+                  <p className="text-sm text-gray-400 mt-0.5">
                     {isEdit ? 'Modify your automation settings' : 'Set up a new automation workflow'}
                   </p>
                 </div>
               </div>
               <button 
                 onClick={handleClose}
-                className="p-2 text-gray-400 hover:text-gray-600 hover:bg-white hover:bg-opacity-80 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95"
+                className="p-2 text-gray-400 hover:text-white hover:bg-gray-800 hover:bg-opacity-80 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -113,7 +113,7 @@ const CustomAutomationModal = ({
         <div className="px-6 py-6 space-y-6">
           {/* Automation Name */}
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-sm font-semibold text-gray-300">
               Automation Name
             </label>
             <div className="relative">
@@ -125,9 +125,9 @@ const CustomAutomationModal = ({
                 onBlur={() => setFocusedField(null)}
                 className={`
                   w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 ease-out
-                  placeholder-gray-400 text-gray-900 bg-gray-50
-                  hover:bg-white hover:border-gray-300
-                  focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-100 focus:outline-none
+                  placeholder-gray-500 text-white bg-gray-800 border-gray-600
+                  hover:bg-gray-700 hover:border-gray-500
+                  focus:bg-gray-700 focus:border-[#1F7D53] focus:ring-4 focus:ring-[#1F7D53] focus:ring-opacity-20 focus:outline-none
                   ${focusedField === 'name' ? 'transform scale-[1.01]' : ''}
                 `}
                 placeholder="e.g., Lead Follow-up Sequence"
@@ -137,7 +137,7 @@ const CustomAutomationModal = ({
 
           {/* Platform Selection */}
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-sm font-semibold text-gray-300">
               Platform
             </label>
             <select
@@ -147,9 +147,9 @@ const CustomAutomationModal = ({
               onBlur={() => setFocusedField(null)}
               className={`
                 w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 ease-out
-                text-gray-900 bg-gray-50 cursor-pointer
-                hover:bg-white hover:border-gray-300
-                focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-100 focus:outline-none
+                text-white bg-gray-800 border-gray-600 cursor-pointer
+                hover:bg-gray-700 hover:border-gray-500
+                focus:bg-gray-700 focus:border-[#1F7D53] focus:ring-4 focus:ring-[#1F7D53] focus:ring-opacity-20 focus:outline-none
                 ${focusedField === 'platform' ? 'transform scale-[1.01]' : ''}
               `}
             >
@@ -162,7 +162,7 @@ const CustomAutomationModal = ({
 
           {/* Trigger Event */}
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-sm font-semibold text-gray-300">
               Trigger Event
             </label>
             <select
@@ -172,9 +172,9 @@ const CustomAutomationModal = ({
               onBlur={() => setFocusedField(null)}
               className={`
                 w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 ease-out
-                text-gray-900 bg-gray-50 cursor-pointer
-                hover:bg-white hover:border-gray-300
-                focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-100 focus:outline-none
+                text-white bg-gray-800 border-gray-600 cursor-pointer
+                hover:bg-gray-700 hover:border-gray-500
+                focus:bg-gray-700 focus:border-[#1F7D53] focus:ring-4 focus:ring-[#1F7D53] focus:ring-opacity-20 focus:outline-none
                 ${focusedField === 'trigger' ? 'transform scale-[1.01]' : ''}
               `}
             >
@@ -187,7 +187,7 @@ const CustomAutomationModal = ({
 
           {/* Action Type */}
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-sm font-semibold text-gray-300">
               Action Type
             </label>
             <select
@@ -197,9 +197,9 @@ const CustomAutomationModal = ({
               onBlur={() => setFocusedField(null)}
               className={`
                 w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 ease-out
-                text-gray-900 bg-gray-50 cursor-pointer
-                hover:bg-white hover:border-gray-300
-                focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-100 focus:outline-none
+                text-white bg-gray-800 border-gray-600 cursor-pointer
+                hover:bg-gray-700 hover:border-gray-500
+                focus:bg-gray-700 focus:border-[#1F7D53] focus:ring-4 focus:ring-[#1F7D53] focus:ring-opacity-20 focus:outline-none
                 ${focusedField === 'action' ? 'transform scale-[1.01]' : ''}
               `}
             >
@@ -212,7 +212,7 @@ const CustomAutomationModal = ({
 
           {/* Status */}
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-sm font-semibold text-gray-300">
               Status
             </label>
             <div className="relative">
@@ -223,9 +223,9 @@ const CustomAutomationModal = ({
                 onBlur={() => setFocusedField(null)}
                 className={`
                   w-full px-4 py-3 pl-12 rounded-xl border-2 transition-all duration-200 ease-out
-                  text-gray-900 bg-gray-50 cursor-pointer appearance-none
-                  hover:bg-white hover:border-gray-300
-                  focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-100 focus:outline-none
+                  text-white cursor-pointer appearance-none
+                  hover:bg-gray-700 hover:border-gray-500
+                  focus:bg-gray-700 focus:border-[#1F7D53] focus:ring-4 focus:ring-[#1F7D53] focus:ring-opacity-20 focus:outline-none
                   ${focusedField === 'status' ? 'transform scale-[1.01]' : ''}
                   ${getStatusColor(customAutomation.status)}
                 `}
@@ -242,11 +242,11 @@ const CustomAutomationModal = ({
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-5 bg-gray-50 rounded-b-2xl border-t border-gray-100">
+        <div className="px-6 py-5 bg-gray-900 rounded-b-2xl border-t border-gray-700">
           <div className="flex items-center justify-end space-x-3">
             <button
               onClick={handleClose}
-              className="px-5 py-2.5 text-gray-600 font-medium rounded-xl hover:text-gray-800 hover:bg-white hover:shadow-sm transition-all duration-200 transform hover:scale-105 active:scale-95"
+              className="px-5 py-2.5 text-gray-400 font-medium rounded-xl hover:text-white hover:bg-gray-800 hover:shadow-sm transition-all duration-200 transform hover:scale-105 active:scale-95"
             >
               Cancel
             </button>
@@ -255,10 +255,10 @@ const CustomAutomationModal = ({
               disabled={!customAutomation.name?.trim()}
               className={`
                 px-6 py-2.5 font-medium rounded-xl transition-all duration-200 transform
-                focus:outline-none focus:ring-4 focus:ring-blue-100
+                focus:outline-none focus:ring-4 focus:ring-[#1F7D53] focus:ring-opacity-20
                 ${customAutomation.name?.trim() 
-                  ? 'bg-blue-500 hover:bg-blue-600 text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95' 
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  ? 'bg-[#1F7D53] hover:bg-[#255F38] text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95' 
+                  : 'bg-gray-700 text-gray-500 cursor-not-allowed'
                 }
               `}
             >

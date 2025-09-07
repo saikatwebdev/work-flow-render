@@ -67,10 +67,11 @@ const EngagementChart = ({ selectedPeriod, onPeriodChange }) => {
         beginAtZero: true,
         max: 100,
         grid: {
-          color: 'rgba(0, 0, 0, 0.1)',
+          color: 'rgba(255, 255, 255, 0.1)',
           borderDash: [5, 5]
         },
         ticks: {
+          color: '#9CA3AF',
           callback: function(value) {
             return value + '%';
           }
@@ -79,6 +80,9 @@ const EngagementChart = ({ selectedPeriod, onPeriodChange }) => {
       x: {
         grid: {
           display: false
+        },
+        ticks: {
+          color: '#9CA3AF'
         }
       }
     },
@@ -90,18 +94,18 @@ const EngagementChart = ({ selectedPeriod, onPeriodChange }) => {
 
   return (
     <div className="lg:col-span-2">
-      <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+      <div className="bg-black rounded-xl p-6 shadow-sm border border-gray-700">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">{currentEngagementData.title}</h3>
-            <p className="text-sm text-gray-500">{currentEngagementData.subtitle}</p>
+            <h3 className="text-lg font-semibold text-white">{currentEngagementData.title}</h3>
+            <p className="text-sm text-gray-400">{currentEngagementData.subtitle}</p>
           </div>
           <div className="flex items-center space-x-2">
             <div className="relative">
               <select
                 value={selectedPeriod}
                 onChange={(e) => onPeriodChange(e.target.value)}
-                className="appearance-none bg-white border border-gray-200 rounded-lg px-3 py-2 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+                className="appearance-none bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 pr-8 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#1F7D53] cursor-pointer"
               >
                 <option value="weekly">Weekly</option>
                 <option value="monthly">Monthly</option>

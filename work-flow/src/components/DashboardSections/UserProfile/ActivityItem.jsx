@@ -4,11 +4,11 @@ import { Activity, Users, MessageSquare, CheckCircle } from 'lucide-react';
 const ActivityItem = ({ activity }) => {
   const getStatusColor = (status) => {
     switch (status) {
-      case 'active': return 'bg-green-100 text-green-800';
-      case 'paused': return 'bg-yellow-100 text-yellow-800';
-      case 'new': return 'bg-blue-100 text-blue-800';
-      case 'sent': return 'bg-purple-100 text-purple-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'active': return 'bg-[#1F7D53] text-white';
+      case 'paused': return 'bg-[#255F38] text-white';
+      case 'new': return 'bg-[#255F38] text-white';
+      case 'sent': return 'bg-[#1F7D53] text-white';
+      default: return 'bg-gray-700 text-gray-200';
     }
   };
 
@@ -22,18 +22,18 @@ const ActivityItem = ({ activity }) => {
   };
 
   return (
-    <div className="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
-      <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+    <div className="flex items-center space-x-3 p-3 hover:bg-gray-800 rounded-lg transition-colors bg-black">
+      <div className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white">
         {getIcon(activity.type)}
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center space-x-2">
-          <p className="text-sm font-medium text-gray-900 truncate">{activity.name}</p>
+          <p className="text-sm font-medium text-white truncate">{activity.name}</p>
           <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(activity.status)}`}>
             {activity.status}
           </span>
         </div>
-        <p className="text-xs text-gray-500">{activity.action} • {activity.time}</p>
+        <p className="text-xs text-gray-400">{activity.action} • {activity.time}</p>
       </div>
     </div>
   );

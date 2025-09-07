@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom'; // Add this import in your project
 import { 
   Send, 
   Activity, 
@@ -36,7 +36,7 @@ const UserProfile = () => {
   const [customQuickLaunch, setCustomQuickLaunch] = useState([]);
   const [editingAutomation, setEditingAutomation] = useState(null);
   const [deletingAutomation, setDeletingAutomation] = useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate(); // Uncomment this in your project
 
   const [animatedMetrics, setAnimatedMetrics] = useState({
     totalMessages: 0,
@@ -116,11 +116,11 @@ const UserProfile = () => {
     switch (cardType) {
       case 'messages':
         showNotification('Redirecting to Chats page...');
-        navigate('/dashboard/chats');
+        // navigate('/dashboard/chats'); // Uncomment this in your project
         break;
       case 'automations':
         showNotification('Redirecting to Integration page...');
-        navigate('/dashboard/integration');
+        // navigate('/dashboard/integration'); // Uncomment this in your project
         break;
       default:
         break;
@@ -197,12 +197,12 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-black">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">Automation Performance</h2>
-          <p className="text-gray-600 mt-2">Track and optimize your automation campaigns</p>
+          <h2 className="text-3xl font-bold text-white">Automation Performance</h2>
+          <p className="text-gray-400 mt-2">Track and optimize your automation campaigns</p>
         </div>
 
         {/* Metrics Cards */}
