@@ -30,18 +30,34 @@ const AreaChart = ({ data }) => {
     plugins: {
       legend: {
         position: 'top',
+        labels: {
+          color: '#9CA3AF', // Gray-400 for legend text
+        },
+      },
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        titleColor: 'white',
+        bodyColor: 'white',
+        borderColor: '#374151',
+        borderWidth: 1,
       },
     },
     scales: {
       y: {
         beginAtZero: true,
         grid: {
-          color: '#f3f4f6',
+          color: 'rgba(255, 255, 255, 0.1)', // Light grid for dark background
+        },
+        ticks: {
+          color: '#9CA3AF', // Gray-400 for axis labels
         },
       },
       x: {
         grid: {
-          color: '#f3f4f6',
+          color: 'rgba(255, 255, 255, 0.1)', // Light grid for dark background
+        },
+        ticks: {
+          color: '#9CA3AF', // Gray-400 for axis labels
         },
       },
     },

@@ -28,25 +28,41 @@ const LineChart = ({ data }) => {
     plugins: {
       legend: {
         position: 'top',
+        labels: {
+          color: '#255F38', // Dark mode text color for legend
+        },
+      },
+      tooltip: {
+        backgroundColor: '#1F7D53', // Dark mode tooltip background
+        titleColor: '#ffffff',
+        bodyColor: '#ffffff',
+        borderColor: '#255F38',
+        borderWidth: 1,
       },
     },
     scales: {
       y: {
         beginAtZero: true,
         grid: {
-          color: '#f3f4f6',
+          color: '#255F38', // Dark mode grid color
+        },
+        ticks: {
+          color: '#255F38', // Dark mode tick labels
         },
       },
       x: {
         grid: {
-          color: '#f3f4f6',
+          color: '#255F38', // Dark mode grid color
+        },
+        ticks: {
+          color: '#255F38', // Dark mode tick labels
         },
       },
     },
   };
 
   return (
-    <div className="h-64">
+    <div className="h-64 bg-black"> {/* Dark mode background */}
       <Line options={options} data={data} />
     </div>
   );

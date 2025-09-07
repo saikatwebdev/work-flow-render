@@ -11,12 +11,22 @@ const DoughnutChart = ({ data }) => {
     plugins: {
       legend: {
         position: 'bottom',
+        labels: {
+          color: '#255F38', // Dark mode text color for legend
+        },
+      },
+      tooltip: {
+        backgroundColor: '#1F7D53', // Dark mode tooltip background
+        titleColor: '#ffffff',
+        bodyColor: '#ffffff',
+        borderColor: '#255F38',
+        borderWidth: 1,
       },
     },
   };
 
   return (
-    <div className="h-64">
+    <div className="h-64 bg-black"> {/* Dark mode background */}
       <Doughnut options={options} data={data} />
     </div>
   );

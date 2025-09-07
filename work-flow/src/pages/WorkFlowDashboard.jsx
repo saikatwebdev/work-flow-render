@@ -32,6 +32,7 @@ import SignOutModal from "../components/SignOutModal";
 import CampaignsDemo from "../components/CreateCampaign/CampaignsDemo";
 import AICounsellor from "../components/DashboardSections/AICounsellor/AICounsellor";
 import ContactUploadPage from "../components/DashboardSections/Contacts/ContactUploadPage";
+
 const WorkFlowDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
@@ -80,30 +81,30 @@ const WorkFlowDashboard = () => {
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 backdrop-blur-sm bg-opacity-50 z-50 animate-fadeIn lg:hidden"
+          className="fixed inset-0 backdrop-blur-sm bg-black bg-opacity-50 z-50 animate-fadeIn lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <div
-        className={`fixed lg:static inset-y-0 left-0 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out ${
+        className={`fixed lg:static inset-y-0 left-0 w-64 bg-black shadow-xl transform transition-transform duration-300 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
-        } lg:w-16 lg:shadow-sm flex flex-col z-50`}
+        } lg:w-16 lg:shadow-sm flex flex-col z-50 border-r border-[#255F38]`}
       >
         {/* Logo */}
-        <div className="p-4 lg:p-3 flex items-center justify-between lg:justify-center">
+        <div className="p-4 lg:p-3 flex items-center justify-between lg:justify-center border-b border-[#255F38]">
           <div className="flex items-center space-x-3 lg:space-x-0">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+            <div className="w-8 h-8 bg-gradient-to-br from-[#255F38] to-[#1F7D53] rounded-lg flex items-center justify-center shadow-lg">
               <Activity className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900 lg:hidden">
+            <span className="text-xl font-bold text-white lg:hidden">
               WorkFlow
             </span>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+            className="lg:hidden p-2 hover:bg-[#255F38] rounded-lg text-white"
           >
             <X className="w-5 h-5" />
           </button>
@@ -119,8 +120,8 @@ const WorkFlowDashboard = () => {
                 onClick={() => handleSectionClick(item)}
                 className={`flex items-center space-x-3 lg:space-x-0 lg:justify-center p-3 rounded-lg cursor-pointer transition-all duration-200 group ${
                   isActive
-                    ? "bg-blue-50 text-blue-600 border-r-4 border-blue-600 lg:border-r-0 lg:bg-blue-500 lg:text-white"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900 lg:hover:bg-blue-50 lg:hover:text-blue-600"
+                    ? "bg-[#255F38] text-white border-r-4 border-[#1F7D53] lg:border-r-0 lg:bg-[#255F38] lg:text-white"
+                    : "text-[#255F38] hover:bg-[#255F38] hover:text-white lg:hover:bg-[#255F38] lg:hover:text-white"
                 }`}
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
@@ -128,7 +129,7 @@ const WorkFlowDashboard = () => {
                 <span className="lg:hidden font-medium">{item.label}</span>
 
                 {/* Tooltip for desktop */}
-                <div className="hidden lg:group-hover:block absolute left-16 bg-gray-900 text-white px-2 py-1 rounded text-sm whitespace-nowrap z-10">
+                <div className="hidden lg:group-hover:block absolute left-16 bg-[#1F7D53] text-white px-2 py-1 rounded text-sm whitespace-nowrap z-10 border border-[#255F38]">
                   {item.label}
                 </div>
               </div>
@@ -137,16 +138,16 @@ const WorkFlowDashboard = () => {
         </nav>
 
         {/* Sign out */}
-        <div className="p-4 lg:p-3 border-t border-gray-200">
+        <div className="p-4 lg:p-3 border-t border-[#255F38]">
           <div
             onClick={handleSignOutClick}
-            className="flex items-center space-x-3 lg:space-x-0 lg:justify-center p-3 rounded-lg cursor-pointer text-red-600 hover:bg-red-50 transition-all duration-200 group"
+            className="flex items-center space-x-3 lg:space-x-0 lg:justify-center p-3 rounded-lg cursor-pointer text-red-400 hover:bg-red-900 hover:bg-opacity-30 transition-all duration-200 group"
           >
             <LogOut className="w-5 h-5 flex-shrink-0" />
             <span className="lg:hidden font-medium">Sign Out</span>
 
             {/* Tooltip for desktop */}
-            <div className="hidden lg:group-hover:block absolute left-16 bg-gray-900 text-white px-2 py-1 rounded text-sm whitespace-nowrap z-10">
+            <div className="hidden lg:group-hover:block absolute left-16 bg-[#1F7D53] text-white px-2 py-1 rounded text-sm whitespace-nowrap z-10 border border-[#255F38]">
               Sign Out
             </div>
           </div>
@@ -156,7 +157,7 @@ const WorkFlowDashboard = () => {
   );
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-black">
       <Sidebar />
 
       {/* Main Content */}
@@ -165,7 +166,7 @@ const WorkFlowDashboard = () => {
         <Navbar onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
 
         {/* Main Content */}
-        <main className="flex-1 p-2 lg:p-2 overflow-y-auto">
+        <main className="flex-1 p-2 lg:p-2 overflow-y-auto bg-black">
           {/* Content Area with Routes */}
           <Routes>
             <Route
