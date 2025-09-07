@@ -77,15 +77,15 @@ const UserDropdown = ({ user, onSignOut }) => {
           aria-haspopup="true"
           aria-expanded={isOpen}
         >
-          <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#255F38' }}>
             {userData.avatar ? (
               <img src={userData.avatar} alt={userData.name} className="w-full h-full object-cover" />
             ) : (
-              <User className="w-5 h-5 text-gray-700" />
+              <User className="w-5 h-5 text-white" />
             )}
           </div>
           <ChevronDown 
-            className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${isOpen ? 'transform rotate-180' : ''}`} 
+            className={`w-4 h-4 text-white transition-transform duration-200 ${isOpen ? 'transform rotate-180' : ''}`} 
           />
         </button>
 
@@ -97,21 +97,25 @@ const UserDropdown = ({ user, onSignOut }) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.15, ease: 'easeOut' }}
-              className="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-xl border border-gray-200 z-50 overflow-hidden"
+              className="absolute right-0 mt-2 w-72 rounded-lg shadow-xl z-50 overflow-hidden"
+              style={{ 
+                backgroundColor: '#000000',
+                border: '1px solid #255F38'
+              }}
             >
               {/* User Info Section */}
-              <div className="p-4 border-b border-gray-100">
+              <div className="p-4" style={{ borderBottom: '1px solid #255F38' }}>
                 <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#1F7D53' }}>
                     {userData.avatar ? (
                       <img src={userData.avatar} alt={userData.name} className="w-full h-full object-cover rounded-full" />
                     ) : (
-                      <User className="w-6 h-6 text-blue-600" />
+                      <User className="w-6 h-6 text-white" />
                     )}
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-sm font-medium text-gray-900 truncate">{userData.name}</h3>
-                    <p className="text-sm text-gray-500 truncate">{userData.email}</p>
+                    <h3 className="text-sm font-medium text-white truncate">{userData.name}</h3>
+                    <p className="text-sm text-gray-300 truncate">{userData.email}</p>
                     <p className="text-xs text-gray-400 mt-0.5">{userData.phone}</p>
                   </div>
                 </div>
@@ -121,25 +125,40 @@ const UserDropdown = ({ user, onSignOut }) => {
               <div className="py-1">
                 <button
                   onClick={handleEditProfile}
-                  className="w-full px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3"
+                  className="w-full px-4 py-2.5 text-sm text-white flex items-center space-x-3 transition-colors"
+                  style={{ backgroundColor: 'transparent' }}
+                  onMouseEnter={(e) => e.target.style.backgroundColor = '#255F38'}
+                  onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
                 >
-                  <Edit className="w-4 h-4 text-gray-500" />
+                  <Edit className="w-4 h-4 text-gray-400" />
                   <span>Edit Profile</span>
                 </button>
                 
                 <button
                   onClick={handleSettings}
-                  className="w-full px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3"
+                  className="w-full px-4 py-2.5 text-sm text-white flex items-center space-x-3 transition-colors"
+                  style={{ backgroundColor: 'transparent' }}
+                  onMouseEnter={(e) => e.target.style.backgroundColor = '#255F38'}
+                  onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
                 >
-                  <Settings className="w-4 h-4 text-gray-500" />
+                  <Settings className="w-4 h-4 text-gray-400" />
                   <span>Settings</span>
                 </button>
 
-                <div className="border-t border-gray-100 my-1"></div>
+                <div className="my-1" style={{ borderTop: '1px solid #255F38' }}></div>
                 
                 <button
                   onClick={handleSignOutClick}
-                  className="w-full px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-3"
+                  className="w-full px-4 py-2.5 text-sm text-red-400 flex items-center space-x-3 transition-colors"
+                  style={{ backgroundColor: 'transparent' }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#dc2626';
+                    e.target.style.color = '#ffffff';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = 'transparent';
+                    e.target.style.color = '#f87171';
+                  }}
                 >
                   <LogOut className="w-4 h-4" />
                   <span>Sign out</span>
