@@ -121,7 +121,7 @@ const WorkFlowDashboard = () => {
                 className={`flex items-center space-x-3 lg:space-x-0 lg:justify-center p-3 rounded-lg cursor-pointer transition-all duration-200 group ${
                   isActive
                     ? "bg-[#255F38] text-white border-r-4 border-[#1F7D53] lg:border-r-0 lg:bg-[#255F38] lg:text-white"
-                    : "text-[#255F38] hover:bg-[#255F38] hover:text-white lg:hover:bg-[#255F38] lg:hover:text-white"
+                    : "text-white hover:bg-[#255F38] hover:text-white lg:hover:bg-[#255F38] lg:hover:text-white"
                 }`}
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
