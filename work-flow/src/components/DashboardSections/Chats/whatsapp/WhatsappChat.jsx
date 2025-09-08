@@ -283,9 +283,18 @@ function WhatsappChat() {
   };
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] bg-white overflow-hidden">
+    <div 
+      className="flex h-[calc(100vh-4rem)] overflow-hidden"
+      style={{ backgroundColor: '#000000' }}
+    >
       {/* Sidebar */}
-      <div className="w-80 border-r border-gray-200 flex flex-col h-full">
+      <div 
+        className="w-80 border-r flex flex-col h-full"
+        style={{ 
+          backgroundColor: '#000000',
+          borderRightColor: '#1F7D53'
+        }}
+      >
         {/* Header with Filters - Fixed */}
         <div className="flex-shrink-0">
           <ChatFilter
@@ -321,7 +330,7 @@ function WhatsappChat() {
       />
 
       {/* Customer Details Panel */}
-      {activeChat && (
+      {activeChat && isDetailsOpen && (
         <CustomerDetails
           customer={customerData[activeChat.id]}
           isOpen={isDetailsOpen}

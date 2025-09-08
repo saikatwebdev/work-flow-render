@@ -57,10 +57,10 @@ const Chats = () => {
   };
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col" style={{ backgroundColor: '#000000' }}>
       {/* Chat Platform Selector */}
-      <div className="bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-gray-700">Chat Platforms</h2>
+      <div className="border-b px-4 py-2 flex items-center justify-between" style={{ backgroundColor: '#1F7D53', borderBottomColor: '#255F38' }}>
+        <h2 className="text-lg font-semibold text-white">Chat Platforms</h2>
         <div className="flex items-center gap-2">
           {chatOptions.map((option) => {
             const IconComponent = option.icon;
@@ -73,8 +73,9 @@ const Chats = () => {
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md transition-all duration-200 ${
                   isActive 
                     ? `${option.color} text-white shadow-sm` 
-                    : `bg-gray-100 text-gray-600 ${option.hoverColor} hover:text-white`
+                    : `text-gray-300 ${option.hoverColor} hover:text-white`
                 }`}
+                style={!isActive ? { backgroundColor: '#255F38' } : {}}
               >
                 <IconComponent size={16} />
                 <span className="text-sm font-medium">{option.name}</span>

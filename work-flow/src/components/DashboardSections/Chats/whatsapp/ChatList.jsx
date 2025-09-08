@@ -12,11 +12,27 @@ const ChatList = ({ chats, activeChat, onChatSelect, searchTerm, statusFilter, t
   });
 
   return (
-    <div className="h-full overflow-y-auto overflow-x-hidden">
+    <div 
+      className="flex-1 overflow-y-auto"
+      style={{ backgroundColor: '#000000' }}
+    >
       {filteredChats.length === 0 ? (
-        <div className="p-8 text-center text-gray-500">
-          <p>No chats found</p>
-          <p className="text-sm mt-2">Try adjusting your search or filter</p>
+        <div 
+          className="flex flex-col items-center justify-center h-full text-center p-8"
+          style={{ backgroundColor: '#000000' }}
+        >
+          <div 
+            className="text-xl font-medium mb-2"
+            style={{ color: '#255F38' }}
+          >
+            No chats found
+          </div>
+          <div 
+            className="text-sm opacity-70"
+            style={{ color: '#1F7D53' }}
+          >
+            Try adjusting your search or filter
+          </div>
         </div>
       ) : (
         filteredChats.map(chat => (

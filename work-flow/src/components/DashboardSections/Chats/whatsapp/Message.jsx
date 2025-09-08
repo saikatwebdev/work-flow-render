@@ -8,10 +8,17 @@ const Message = ({ message, isAI }) => {
         <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
           message.sender === 'me' 
             ? isAI 
-              ? 'bg-gradient-to-r from-green-500 to-pink-500 text-white'
-              : 'bg-gradient-to-r from-green-500 to-green-500 text-white'
-            : 'bg-gray-300 text-gray-700'
-        }`}>
+              ? 'text-white'
+              : 'text-white'
+            : 'text-white'
+        }`}
+        style={{
+          backgroundColor: message.sender === 'me' 
+            ? isAI 
+              ? '#255F38'
+              : '#255F38'
+            : '#1F7D53'
+        }}>
           {message.sender === 'me' 
             ? isAI 
               ? <Bot className="w-4 h-4" /> 
@@ -22,22 +29,32 @@ const Message = ({ message, isAI }) => {
         <div>
           <div className={`px-4 py-2 rounded-2xl ${
             message.sender === 'me' 
+              ? 'text-white'
+              : 'text-white'
+          }`}
+          style={{
+            backgroundColor: message.sender === 'me' 
               ? isAI
-                ? 'bg-gradient-to-r from-green-500 to-pink-500 text-white'
-                : 'bg-gradient-to-r from-green-500 to-green-500 text-white'
-              : 'bg-gray-100 text-gray-800'
-          }`}>
+                ? '#255F38'
+                : '#255F38'
+              : '#1F7D53'
+          }}>
             <p className="text-sm break-words">{message.text}</p>
             <p className={`text-xs mt-1 ${
               message.sender === 'me' 
-                ? 'text-white/80' 
-                : 'text-gray-500'
+                ? 'text-white opacity-80' 
+                : 'text-white opacity-70'
             }`}>
               {message.time}
             </p>
           </div>
           {message.sender === 'me' && isAI && (
-            <p className="text-xs text-green-600 mt-1 text-right">AI Generated</p>
+            <p 
+              className="text-xs mt-1 text-right"
+              style={{ color: '#1F7D53' }}
+            >
+              AI Generated
+            </p>
           )}
         </div>
       </div>
