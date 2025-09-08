@@ -22,8 +22,8 @@ const FacebookAppBanner = () => {
   }, []);
   if (!info?.appId) return null;
   return (
-    <div className="mb-4 rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900">
-      Using Facebook App: <span className="font-medium">{info.appName || 'Unknown'}</span> (ID: {info.appId}) · Callback: <code className="bg-white px-1 py-0.5 rounded border">{info.callback}</code>
+    <div className="mb-4 rounded-lg border border-[#255F38] bg-[#1F7D53] p-3 text-sm text-white">
+      Using Facebook App: <span className="font-medium">{info.appName || 'Unknown'}</span> (ID: {info.appId}) · Callback: <code className="bg-black px-1 py-0.5 rounded border border-[#255F38] text-white">{info.callback}</code>
     </div>
   );
 };
@@ -137,18 +137,18 @@ const Integration  = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-black p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Integrations</h1>
-          <p className="text-gray-600">Connect your social platforms and create AI-powered automations</p>
+          <h1 className="text-3xl font-bold text-white mb-2">Integrations</h1>
+          <p className="text-gray-300">Connect your social platforms and create AI-powered automations</p>
         </div>
 
         {/* Connected Accounts Section */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-2">
-            <h2 className="text-xl font-semibold text-gray-900">Connected Accounts</h2>
+            <h2 className="text-xl font-semibold text-white">Connected Accounts</h2>
           </div>
           {/* FB App banner */}
           <FacebookAppBanner />
@@ -165,8 +165,8 @@ const Integration  = () => {
                   onClick={() => handleAddConnection(key)}
                   className={`relative p-6 rounded-xl border-2 border-dashed transition-all duration-200 ${
                     hasConnection 
-                      ? 'border-gray-300 hover:border-gray-400' 
-                      : 'border-gray-300 hover:border-gray-400'
+                      ? 'border-[#255F38] hover:border-[#1F7D53] bg-gray-900' 
+                      : 'border-[#255F38] hover:border-[#1F7D53] bg-gray-900'
                   }`}
                 >
                   <div className="flex flex-col items-center gap-3">
@@ -174,14 +174,14 @@ const Integration  = () => {
                       <Icon size={28} />
                     </div>
                     <div className="text-center">
-                      <h3 className="font-semibold text-gray-900">{platform.name}</h3>
-                      <p className="text-sm text-gray-500 mt-1">
+                      <h3 className="font-semibold text-white">{platform.name}</h3>
+                      <p className="text-sm text-gray-400 mt-1">
                         {hasConnection ? 'Add another account' : 'Connect account'}
                       </p>
                     </div>
                   </div>
                   {hasConnection && (
-                    <div className="absolute top-3 right-3 w-3 h-3 bg-green-500 rounded-full"></div>
+                    <div className="absolute top-3 right-3 w-3 h-3 bg-[#1F7D53] rounded-full"></div>
                   )}
                 </button>
               );
@@ -211,10 +211,10 @@ const Integration  = () => {
         {/* Automations Section */}
         <div>
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-gray-900">AI Automations</h2>
+            <h2 className="text-xl font-semibold text-white">AI Automations</h2>
             <button
               onClick={handleCreateAutomation}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-[#255F38] text-white rounded-lg hover:bg-[#1F7D53] transition-colors"
             >
               <Plus size={20} />
               Create Automation
@@ -222,18 +222,18 @@ const Integration  = () => {
           </div>
 
           {automations.length === 0 ? (
-            <div className="bg-white rounded-xl border-2 border-dashed border-gray-300 p-12 text-center">
+            <div className="bg-gray-900 rounded-xl border-2 border-dashed border-[#255F38] p-12 text-center">
               <div className="max-w-sm mx-auto">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Plus size={24} className="text-gray-400" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No automations yet</h3>
-                <p className="text-gray-500 mb-4">
+                <h3 className="text-lg font-medium text-white mb-2">No automations yet</h3>
+                <p className="text-gray-400 mb-4">
                   Create your first AI automation to start engaging with your audience automatically
                 </p>
                 <button
                   onClick={handleCreateAutomation}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="px-4 py-2 bg-[#255F38] text-white rounded-lg hover:bg-[#1F7D53] transition-colors"
                 >
                   Create Automation
                 </button>

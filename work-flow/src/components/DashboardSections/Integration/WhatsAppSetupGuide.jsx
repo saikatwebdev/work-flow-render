@@ -23,32 +23,32 @@ const WhatsAppSetupGuide = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-4">
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">WhatsApp Cloud API Setup</h3>
+    <div className="bg-gray-900 rounded-xl border border-[#255F38] p-4">
+      <h3 className="text-lg font-semibold text-white mb-2">WhatsApp Cloud API Setup</h3>
       {loading ? (
-        <div className="text-sm text-gray-500">Loading…</div>
+        <div className="text-sm text-gray-400">Loading…</div>
       ) : (
         <div className="space-y-4">
-          <div className="text-sm text-gray-700">
+          <div className="text-sm text-gray-300">
             Follow these steps to connect your WhatsApp Business via Meta Cloud API.
           </div>
 
-          <ol className="list-decimal pl-5 space-y-3 text-sm text-gray-800">
+          <ol className="list-decimal pl-5 space-y-3 text-sm text-gray-200">
             <li>
               Go to Meta for Developers → WhatsApp → Getting Started.
-              <div className="mt-1 text-gray-600">Pick or create a phone number, then note its Phone Number ID.</div>
+              <div className="mt-1 text-gray-400">Pick or create a phone number, then note its Phone Number ID.</div>
             </li>
             <li>
               Configure webhook subscription to this callback URL:
               <div className="mt-1 flex items-center gap-2">
-                <code className="px-2 py-1 bg-gray-100 rounded text-xs break-all">{cfg.callbackUrl || 'http://localhost:10000/webhook'}</code>
-                <button onClick={() => copy(cfg.callbackUrl)} className="text-xs px-2 py-1 bg-gray-800 text-white rounded">Copy</button>
+                <code className="px-2 py-1 bg-black border border-[#255F38] rounded text-xs break-all text-white">{cfg.callbackUrl || 'http://localhost:10000/webhook'}</code>
+                <button onClick={() => copy(cfg.callbackUrl)} className="text-xs px-2 py-1 bg-[#255F38] text-white rounded hover:bg-[#1F7D53] transition-colors">Copy</button>
               </div>
-              <div className="mt-1 text-gray-600">Set Verify Token to the same value you enter below in Integration → Connect → WhatsApp → API.</div>
+              <div className="mt-1 text-gray-400">Set Verify Token to the same value you enter below in Integration → Connect → WhatsApp → API.</div>
             </li>
             <li>
               Generate a permanent access token (long-lived):
-              <ul className="list-disc pl-5 mt-1 text-gray-600">
+              <ul className="list-disc pl-5 mt-1 text-gray-400">
                 <li>In Business Settings → System Users, create a system user and generate a permanent token with whatsapp_business_messaging, whatsapp_business_management.</li>
                 <li>Associate the WhatsApp Business App and phone number to that token.</li>
                 <li>Avoid short-lived test tokens; they expire quickly.</li>
@@ -58,16 +58,16 @@ const WhatsAppSetupGuide = () => {
               Enter these in Integration → Connect → WhatsApp → API:
               <div className="mt-1 grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div>
-                  <div className="text-xs text-gray-500">Access Token</div>
-                  <div className="text-xs font-mono bg-gray-100 rounded px-2 py-1">{cfg.tokenMasked || '—'}</div>
+                  <div className="text-xs text-gray-400">Access Token</div>
+                  <div className="text-xs font-mono bg-black border border-[#255F38] rounded px-2 py-1 text-white">{cfg.tokenMasked || '—'}</div>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Phone Number ID</div>
-                  <div className="text-xs font-mono bg-gray-100 rounded px-2 py-1">{cfg.phoneNumberId || '—'}</div>
+                  <div className="text-xs text-gray-400">Phone Number ID</div>
+                  <div className="text-xs font-mono bg-black border border-[#255F38] rounded px-2 py-1 text-white">{cfg.phoneNumberId || '—'}</div>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Verify Token Set</div>
-                  <div className="text-xs font-mono bg-gray-100 rounded px-2 py-1">{cfg.verifyTokenSet ? 'Yes' : 'No'}</div>
+                  <div className="text-xs text-gray-400">Verify Token Set</div>
+                  <div className="text-xs font-mono bg-black border border-[#255F38] rounded px-2 py-1 text-white">{cfg.verifyTokenSet ? 'Yes' : 'No'}</div>
                 </div>
               </div>
             </li>
@@ -77,7 +77,7 @@ const WhatsAppSetupGuide = () => {
           </ol>
 
           <div className="pt-2 text-xs text-gray-500">
-            Tip: If messages don’t appear, ensure the webhook is subscribed for messages + message status events on your WhatsApp app in Meta.
+            Tip: If messages don't appear, ensure the webhook is subscribed for messages + message status events on your WhatsApp app in Meta.
           </div>
         </div>
       )}

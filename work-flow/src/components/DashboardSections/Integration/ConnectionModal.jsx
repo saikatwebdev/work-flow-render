@@ -90,54 +90,54 @@ const ConnectionModal = ({ platform, editingConnection, onClose, onSave }) => {
           return (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-300 mb-1">
                   Access Token
                 </label>
                 <input
                   type="text"
                   value={formData.apiKey}
                   onChange={(e) => setFormData({ ...formData, apiKey: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Paste your WhatsApp Cloud API access token"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-300 mb-1">
                   Phone Number ID
                 </label>
                 <input
                   type="text"
                   value={formData.phoneNumberId}
                   onChange={(e) => setFormData({ ...formData, phoneNumberId: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="e.g. 123456789012345"
                 />
-                <p className="text-xs text-gray-500 mt-1">Find this in Meta → WhatsApp → API Setup. Not your phone number.</p>
+                <p className="text-xs text-gray-400 mt-1">Find this in Meta → WhatsApp → API Setup. Not your phone number.</p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-300 mb-1">
                   Webhook Verify Token
                 </label>
                 <input
                   type="text"
                   value={formData.verifyToken}
                   onChange={(e) => setFormData({ ...formData, verifyToken: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="your webhook verify token"
                 />
-                <p className="text-xs text-gray-500 mt-1">Use the same token when configuring the WhatsApp webhook subscription.</p>
+                <p className="text-xs text-gray-400 mt-1">Use the same token when configuring the WhatsApp webhook subscription.</p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Number Type</label>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Number Type</label>
                 <select
                   value={formData.mode || 'production'}
                   onChange={(e) => setFormData({ ...formData, mode: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="production">Normal (Production)</option>
                   <option value="test">Meta Test Number</option>
                 </select>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-gray-400 mt-1">
                   - Normal: registered business number with Phone Number ID and a system-user token assigned to the same WABA.
                   <br />
                   - Test: use Getting Started test number and add recipients to Test Recipients list.
@@ -148,26 +148,26 @@ const ConnectionModal = ({ platform, editingConnection, onClose, onSave }) => {
         case 'new':
           return (
             <div className="space-y-4">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <p className="text-sm text-blue-800">
+              <div className="bg-gray-800 border border-gray-600 rounded-lg p-4">
+                <p className="text-sm text-blue-400">
                   We'll help you create a new WhatsApp Business number. This process typically takes 2-3 business days.
                 </p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-300 mb-1">
                   Business Name
                 </label>
                 <input
                   type="text"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Your business name"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-300 mb-1">
                   Country
                 </label>
-                <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <select className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                   <option>United States</option>
                   <option>United Kingdom</option>
                   <option>Canada</option>
@@ -182,8 +182,8 @@ const ConnectionModal = ({ platform, editingConnection, onClose, onSave }) => {
     } else if (platform === 'facebook') {
       return (
         <div className="space-y-4">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <p className="text-sm text-blue-800">
+          <div className="bg-gray-800 border border-gray-600 rounded-lg p-4">
+            <p className="text-sm text-blue-400">
               Click "Connect with Facebook" to authorize access to your Facebook Pages and Messenger.
             </p>
           </div>
@@ -191,7 +191,8 @@ const ConnectionModal = ({ platform, editingConnection, onClose, onSave }) => {
             onClick={() => {
               window.location.href = `${window.location.origin}/auth/facebook`;
             }}
-            className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+            className="w-full py-3 text-white rounded-lg hover:bg-opacity-80 transition-colors flex items-center justify-center gap-2"
+            style={{ backgroundColor: '#255F38' }}
           >
             Connect with Facebook
           </button>
@@ -201,18 +202,21 @@ const ConnectionModal = ({ platform, editingConnection, onClose, onSave }) => {
       return (
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-300 mb-1">
               Instagram Username
             </label>
             <input
               type="text"
               value={formData.username}
               onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="@username"
             />
           </div>
-          <button className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-lg hover:opacity-90 transition-opacity">
+          <button 
+            className="w-full py-3 text-white rounded-lg hover:bg-opacity-80 transition-opacity"
+            style={{ backgroundColor: '#1F7D53' }}
+          >
             Connect Instagram Business Account
           </button>
         </div>
@@ -222,23 +226,23 @@ const ConnectionModal = ({ platform, editingConnection, onClose, onSave }) => {
 
   return (
     <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-hidden">
+      <div className="bg-black rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-hidden border border-gray-700">
         {/* Header */}
-        <div className="p-6 border-b border-gray-200">
+        <div className="p-6 border-b border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-semibold text-gray-900">
+              <h2 className="text-xl font-semibold text-white">
                 {editingConnection ? 'Edit Connection' : `Connect ${platformConfig.name}`}
               </h2>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-gray-400 mt-1">
                 {editingConnection ? 'Update your connection settings' : 'Choose how you want to connect'}
               </p>
             </div>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
             >
-              <X size={20} />
+              <X size={20} className="text-gray-400" />
             </button>
           </div>
         </div>
@@ -251,14 +255,14 @@ const ConnectionModal = ({ platform, editingConnection, onClose, onSave }) => {
                 <button
                   key={type.id}
                   onClick={() => setConnectionType(type.id)}
-                  className="w-full p-4 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-colors text-left group"
+                  className="w-full p-4 border border-gray-600 rounded-lg hover:border-gray-500 hover:bg-gray-800 transition-colors text-left group"
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="font-medium text-gray-900">{type.name}</h3>
-                      <p className="text-sm text-gray-500 mt-1">{type.description}</p>
+                      <h3 className="font-medium text-white">{type.name}</h3>
+                      <p className="text-sm text-gray-400 mt-1">{type.description}</p>
                     </div>
-                    <ChevronRight size={20} className="text-gray-400 group-hover:text-gray-600" />
+                    <ChevronRight size={20} className="text-gray-500 group-hover:text-gray-400" />
                   </div>
                 </button>
               ))}
@@ -270,18 +274,19 @@ const ConnectionModal = ({ platform, editingConnection, onClose, onSave }) => {
 
         {/* Footer */}
         {(connectionType || editingConnection) && (
-          <div className="p-6 border-t border-gray-200">
+          <div className="p-6 border-t border-gray-700 bg-gray-900">
             <div className="flex gap-3">
               <button
                 onClick={() => editingConnection ? onClose() : setConnectionType('')}
-                className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex-1 px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-800 transition-colors"
               >
                 {editingConnection ? 'Cancel' : 'Back'}
               </button>
               <button
                 onClick={handleConnect}
                 disabled={isLoading}
-                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2 text-white rounded-lg hover:bg-opacity-80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                style={{ backgroundColor: '#1F7D53' }}
               >
                 {isLoading ? (
                   <>

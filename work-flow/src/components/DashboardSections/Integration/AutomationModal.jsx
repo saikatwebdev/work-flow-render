@@ -122,12 +122,12 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
       case 1:
         return (
           <div className="space-y-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">What's your full name?</h3>
+            <h3 className="text-lg font-medium text-white mb-4">What's your full name?</h3>
             <input
               type="text"
               value={automationData.fullName}
               onChange={(e) => setAutomationData({ ...automationData, fullName: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="e.g., Jane Doe"
             />
           </div>
@@ -136,13 +136,13 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
       case 2:
         return (
           <div className="space-y-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">Which category best describes you?</h3>
+            <h3 className="text-lg font-medium text-white mb-4">Which category best describes you?</h3>
             <div className="grid grid-cols-2 gap-3">
               {userCategories.map(cat => (
-                <label key={cat} className={`block p-4 border rounded-lg cursor-pointer transition-all ${automationData.category === cat ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}>
+                <label key={cat} className={`block p-4 border rounded-lg cursor-pointer transition-all ${automationData.category === cat ? 'border-blue-500 bg-gray-800' : 'border-gray-600 hover:border-gray-500'}`}>
                   <input type="radio" name="category" value={cat} checked={automationData.category === cat} onChange={(e) => setAutomationData({ ...automationData, category: e.target.value })} className="sr-only" />
                   <div className="flex items-center justify-between">
-                    <span className="font-medium text-gray-900">{cat}</span>
+                    <span className="font-medium text-white">{cat}</span>
                     {automationData.category === cat && <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center"><Check size={14} className="text-white" /></div>}
                   </div>
                 </label>
@@ -154,13 +154,13 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
       case 3:
         return (
           <div className="space-y-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">What's your main goal with this workflow?</h3>
+            <h3 className="text-lg font-medium text-white mb-4">What's your main goal with this workflow?</h3>
             <div className="grid grid-cols-1 gap-3">
               {userGoals.map(goal => (
-                <label key={goal} className={`block p-4 border rounded-lg cursor-pointer transition-all ${automationData.mainGoal === goal ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}>
+                <label key={goal} className={`block p-4 border rounded-lg cursor-pointer transition-all ${automationData.mainGoal === goal ? 'border-blue-500 bg-gray-800' : 'border-gray-600 hover:border-gray-500'}`}>
                   <input type="radio" name="mainGoal" value={goal} checked={automationData.mainGoal === goal} onChange={(e) => setAutomationData({ ...automationData, mainGoal: e.target.value })} className="sr-only" />
                   <div className="flex items-center justify-between">
-                    <span className="font-medium text-gray-900">{goal}</span>
+                    <span className="font-medium text-white">{goal}</span>
                     {automationData.mainGoal === goal && <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center"><Check size={14} className="text-white" /></div>}
                   </div>
                 </label>
@@ -172,13 +172,13 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
       case 4:
         return (
           <div className="space-y-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">What industry are you in?</h3>
+            <h3 className="text-lg font-medium text-white mb-4">What industry are you in?</h3>
             <div className="grid grid-cols-2 gap-3">
               {industries.map(industry => (
-                <label key={industry} className={`block p-4 border rounded-lg cursor-pointer transition-all ${automationData.industry === industry ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}>
+                <label key={industry} className={`block p-4 border rounded-lg cursor-pointer transition-all ${automationData.industry === industry ? 'border-blue-500 bg-gray-800' : 'border-gray-600 hover:border-gray-500'}`}>
                   <input type="radio" name="industry" value={industry} checked={automationData.industry === industry} onChange={(e) => setAutomationData({ ...automationData, industry: e.target.value })} className="sr-only" />
                   <div className="flex items-center justify-between">
-                    <span className="font-medium text-gray-900">{industry}</span>
+                    <span className="font-medium text-white">{industry}</span>
                     {automationData.industry === industry && <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center"><Check size={14} className="text-white" /></div>}
                   </div>
                 </label>
@@ -191,22 +191,22 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
         const wordCount = getWordCount(automationData.useCase);
         return (
           <div className="space-y-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-2">What's your main use case?</h3>
-            <p className="text-sm text-gray-500 mb-4">Please be detailed. The more information you provide, the better we can tailor the automation. (min 200 words)</p>
+            <h3 className="text-lg font-medium text-white mb-2">What's your main use case?</h3>
+            <p className="text-sm text-gray-400 mb-4">Please be detailed. The more information you provide, the better we can tailor the automation. (min 200 words)</p>
             <div className="relative">
               <textarea
                 value={automationData.useCase}
                 onChange={(e) => setAutomationData({ ...automationData, useCase: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-y"
+                className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-y"
                 rows="8"
                 placeholder="Describe how you plan to use this automation. For example: 'I want to build a customer support workflow for my e-commerce store. When a customer sends a direct message on Instagram with keywords like 'shipping', 'order status', or 'return', I want the automation to trigger. It should first acknowledge the message and then ask for their order number. Once the order number is provided, it should look it up in our Shopify system via an API call and provide the current status. If the query is about a return, it should provide a link to our returns policy page...'."
               />
               <div className="absolute bottom-3 right-3 flex items-center gap-4">
-                  <span className={`text-xs font-medium ${wordCount < 200 ? 'text-red-500' : 'text-green-600'}`}>
+                  <span className={`text-xs font-medium ${wordCount < 200 ? 'text-red-400' : 'text-green-400'}`}>
                       {wordCount} / 200 words
                   </span>
-                  <button className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-100 text-blue-700 text-xs font-semibold rounded-md hover:bg-blue-200 transition-colors">
-                      <Sparkles size={14} />
+                  <button className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 text-blue-400 text-xs font-semibold rounded-md hover:bg-gray-700 transition-colors">
+                      <Sparkles size={14} style={{color: '#255F38'}} />
                       Complete with AI
                   </button>
               </div>
@@ -217,12 +217,12 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
       case 6:
         return (
           <div className="space-y-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">Describe yourself in 1-2 lines</h3>
+            <h3 className="text-lg font-medium text-white mb-4">Describe yourself in 1-2 lines</h3>
             <input
               type="text"
               value={automationData.bio}
               onChange={(e) => setAutomationData({ ...automationData, bio: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="e.g., I'm a marketing manager for a growing SaaS startup."
             />
           </div>
@@ -233,7 +233,7 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
         return (
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Choose Platform & Account</h3>
+              <h3 className="text-lg font-medium text-white mb-4">Choose Platform & Account</h3>
               <div className="space-y-3">
                 {Object.entries(platforms).map(([key, platform]) => {
                   const Icon = platform.icon;
@@ -247,15 +247,15 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
                         <div className={`p-2 rounded-lg ${platform.color} text-white`}>
                           <Icon size={20} />
                         </div>
-                        <span className="font-medium text-gray-900">{platform.name}</span>
+                        <span className="font-medium text-white">{platform.name}</span>
                       </div>
                       {accounts.map(account => (
                         <label
                           key={account.id}
                           className={`block p-4 border rounded-lg cursor-pointer transition-all ${
                             automationData.platform === key && automationData.accountId === account.id
-                              ? 'border-blue-500 bg-blue-50'
-                              : 'border-gray-200 hover:border-gray-300'
+                              ? 'border-blue-500 bg-gray-800'
+                              : 'border-gray-600 hover:border-gray-500'
                           }`}
                         >
                           <input
@@ -272,10 +272,10 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
                           />
                           <div className="flex items-center justify-between">
                             <div>
-                              <p className="font-medium text-gray-900">
+                              <p className="font-medium text-white">
                                 {account.phoneNumber || account.username || account.pageNames?.[0] || 'Account'}
                               </p>
-                              <p className="text-sm text-gray-500">{account.connectionType}</p>
+                              <p className="text-sm text-gray-400">{account.connectionType}</p>
                             </div>
                             {automationData.platform === key && automationData.accountId === account.id && (
                               <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
@@ -291,8 +291,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
                 
                 {connectedAccounts.length === 0 && (
                   <div className="text-center py-8">
-                    <p className="text-gray-500 mb-2">No connected accounts found.</p>
-                    <p className="text-sm text-gray-400">Please connect a social platform first.</p>
+                    <p className="text-gray-400 mb-2">No connected accounts found.</p>
+                    <p className="text-sm text-gray-500">Please connect a social platform first.</p>
                   </div>
                 )}
               </div>
@@ -304,8 +304,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
         return (
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Select Trigger</h3>
-              <p className="text-sm text-gray-500 mb-4">
+              <h3 className="text-lg font-medium text-white mb-4">Select Trigger</h3>
+              <p className="text-sm text-gray-400 mb-4">
                 Choose what will activate this automation
               </p>
               <div className="grid grid-cols-1 gap-3">
@@ -314,8 +314,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
                     key={trigger}
                     className={`block p-4 border rounded-lg cursor-pointer transition-all ${
                       automationData.trigger === trigger
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300'
+                        ? 'border-blue-500 bg-gray-800'
+                        : 'border-gray-600 hover:border-gray-500'
                     }`}
                   >
                     <input
@@ -330,7 +330,7 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
                       className="sr-only"
                     />
                     <div className="flex items-center justify-between">
-                      <span className="font-medium text-gray-900">{trigger}</span>
+                      <span className="font-medium text-white">{trigger}</span>
                       {automationData.trigger === trigger && (
                         <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
                           <Check size={14} className="text-white" />
@@ -348,8 +348,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
         return (
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Define Automation Logic</h3>
-              <p className="text-sm text-gray-500 mb-4">
+              <h3 className="text-lg font-medium text-white mb-4">Define Automation Logic</h3>
+              <p className="text-sm text-gray-400 mb-4">
                 What should happen when the trigger is activated?
               </p>
               <div className="grid grid-cols-1 gap-3">
@@ -358,8 +358,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
                     key={logic.id}
                     className={`block p-4 border rounded-lg cursor-pointer transition-all ${
                       automationData.logic === logic.name
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300'
+                        ? 'border-blue-500 bg-gray-800'
+                        : 'border-gray-600 hover:border-gray-500'
                     }`}
                   >
                     <input
@@ -375,8 +375,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
                     />
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-medium text-gray-900">{logic.name}</p>
-                        <p className="text-sm text-gray-500 mt-1">{logic.description}</p>
+                        <p className="font-medium text-white">{logic.name}</p>
+                        <p className="text-sm text-gray-400 mt-1">{logic.description}</p>
                       </div>
                       {automationData.logic === logic.name && (
                         <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
@@ -395,15 +395,15 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
         return (
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Schedule Settings</h3>
-              <p className="text-sm text-gray-500 mb-4">
+              <h3 className="text-lg font-medium text-white mb-4">Schedule Settings</h3>
+              <p className="text-sm text-gray-400 mb-4">
                 When should this automation run?
               </p>
               <div className="space-y-3">
                 <label className={`block p-4 border rounded-lg cursor-pointer transition-all ${
                   automationData.schedule === 'event-driven'
-                    ? 'border-blue-500 bg-blue-50'
-                    : 'border-gray-200 hover:border-gray-300'
+                    ? 'border-blue-500 bg-gray-800'
+                    : 'border-gray-600 hover:border-gray-500'
                 }`}>
                   <input
                     type="radio"
@@ -418,8 +418,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
                   />
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-gray-900">Event-driven</p>
-                      <p className="text-sm text-gray-500 mt-1">Run immediately when trigger occurs</p>
+                      <p className="font-medium text-white">Event-driven</p>
+                      <p className="text-sm text-gray-400 mt-1">Run immediately when trigger occurs</p>
                     </div>
                     {automationData.schedule === 'event-driven' && (
                       <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
@@ -431,8 +431,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
 
                 <label className={`block p-4 border rounded-lg cursor-pointer transition-all ${
                   automationData.schedule === 'scheduled'
-                    ? 'border-blue-500 bg-blue-50'
-                    : 'border-gray-200 hover:border-gray-300'
+                    ? 'border-blue-500 bg-gray-800'
+                    : 'border-gray-600 hover:border-gray-500'
                 }`}>
                   <input
                     type="radio"
@@ -447,8 +447,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
                   />
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-gray-900">Scheduled</p>
-                      <p className="text-sm text-gray-500 mt-1">Run at specific times</p>
+                      <p className="font-medium text-white">Scheduled</p>
+                      <p className="text-sm text-gray-400 mt-1">Run at specific times</p>
                     </div>
                     {automationData.schedule === 'scheduled' && (
                       <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
@@ -459,8 +459,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
                 </label>
 
                 {automationData.schedule === 'scheduled' && (
-                  <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="mt-4 p-4 bg-gray-800 rounded-lg">
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
                       Schedule Time
                     </label>
                     <input
@@ -470,7 +470,7 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
                         ...automationData,
                         customSchedule: e.target.value
                       })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
                 )}
@@ -483,25 +483,25 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
         return (
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Preview & Name</h3>
-              <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                <h4 className="font-medium text-gray-900 mb-3">Automation Summary</h4>
+              <h3 className="text-lg font-medium text-white mb-4">Preview & Name</h3>
+              <div className="bg-gray-800 rounded-lg p-4 mb-6">
+                <h4 className="font-medium text-white mb-3">Automation Summary</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Platform:</span>
-                    <span className="font-medium">{platforms[automationData.platform]?.name}</span>
+                    <span className="text-gray-400">Platform:</span>
+                    <span className="font-medium text-white">{platforms[automationData.platform]?.name}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Trigger:</span>
-                    <span className="font-medium">{automationData.trigger}</span>
+                    <span className="text-gray-400">Trigger:</span>
+                    <span className="font-medium text-white">{automationData.trigger}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Action:</span>
-                    <span className="font-medium">{automationData.logic}</span>
+                    <span className="text-gray-400">Action:</span>
+                    <span className="font-medium text-white">{automationData.logic}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Schedule:</span>
-                    <span className="font-medium">
+                    <span className="text-gray-400">Schedule:</span>
+                    <span className="font-medium text-white">
                       {automationData.schedule === 'event-driven' 
                         ? 'Event-driven' 
                         : `Daily at ${automationData.customSchedule}`}
@@ -511,7 +511,7 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Automation Name
                 </label>
                 <input
@@ -521,7 +521,7 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
                     ...automationData,
                     name: e.target.value
                   })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="e.g., Welcome Message Bot"
                 />
               </div>
@@ -536,31 +536,31 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
 
   return (
     <div className="fixed inset-0 backdrop-blur-sm backdrop-blur-sm bg-opacity-30 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] flex flex-col">
+      <div className="bg-black rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] flex flex-col border border-gray-700">
         {/* Header with Progress */}
-        <div className="p-6 border-b border-gray-200">
+        <div className="p-6 border-b border-gray-700">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-xl font-semibold text-gray-900">
+              <h2 className="text-xl font-semibold text-white">
                 {editingAutomation ? 'Edit Automation' : 'Create Automation'}
               </h2>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-gray-400 mt-1">
                 Step {currentStep} of {totalSteps}: {stepTitles[currentStep - 1]}
               </p>
             </div>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
             >
-              <X size={20} className="text-gray-600" />
+              <X size={20} className="text-gray-400" />
             </button>
           </div>
           
           {/* Progress Bar */}
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-gray-800 rounded-full h-2">
             <div 
-              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-              style={{ width: `${progress}%` }}
+              className="h-2 rounded-full transition-all duration-300"
+              style={{ width: `${progress}%`, backgroundColor: '#1F7D53' }}
             />
           </div>
         </div>
@@ -569,8 +569,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
         <div className="p-6 overflow-y-auto flex-grow">
           {isLoading && currentStep > totalSteps ? (
             <div className="flex flex-col items-center justify-center py-12">
-              <Loader2 size={48} className="animate-spin text-blue-600 mb-4" />
-              <p className="text-gray-600">Creating your automation...</p>
+              <Loader2 size={48} className="animate-spin text-blue-400 mb-4" />
+              <p className="text-gray-300">Creating your automation...</p>
             </div>
           ) : (
             renderStepContent()
@@ -578,12 +578,12 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
         </div>
 
         {/* Footer */}
-        <div className="p-6 border-t border-gray-200 bg-gray-50 rounded-b-xl">
+        <div className="p-6 border-t border-gray-700 bg-gray-900 rounded-b-xl">
           <div className="flex gap-3">
             {currentStep > 1 && (
               <button
                 onClick={handleBack}
-                className="flex items-center gap-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+                className="flex items-center gap-1 px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-800 transition-colors"
               >
                 <ChevronLeft size={16} />
                 Back
@@ -594,7 +594,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
               <button
                 onClick={handleNext}
                 disabled={!canProceed()}
-                className="flex-1 flex items-center justify-center gap-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 flex items-center justify-center gap-1 px-4 py-2 text-white rounded-lg hover:bg-opacity-80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ backgroundColor: '#255F38' }}
               >
                 Next
                 <ChevronRight size={16} />
@@ -603,7 +604,8 @@ const AutomationModal = ({ editingAutomation, connectedAccounts, onClose, onSave
               <button
                 onClick={handleSave}
                 disabled={!canProceed() || isLoading}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 text-white rounded-lg hover:bg-opacity-80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ backgroundColor: '#1F7D53' }}
               >
                 {isLoading ? (
                   <>

@@ -54,32 +54,32 @@ const RegisterControls = () => {
 
   return (
     <div className="relative">
-      <button onClick={() => setOpen(v=>!v)} className="text-xs px-2 py-1 border rounded">Register</button>
+      <button onClick={() => setOpen(v=>!v)} className="text-xs px-2 py-1 border border-[#255F38] text-white rounded hover:bg-[#255F38] transition-colors">Register</button>
       {open && (
-        <div className="absolute right-0 z-10 mt-2 w-80 bg-white border rounded shadow p-3 space-y-2">
-          <div className="text-xs text-gray-700 font-medium">WhatsApp Config</div>
-          <input placeholder="Token" className="w-full px-2 py-1 border rounded" value={creds.token} onChange={e=>setCreds({...creds, token: e.target.value})} />
-          <input placeholder="Phone Number ID" className="w-full px-2 py-1 border rounded" value={creds.phoneNumberId} onChange={e=>setCreds({...creds, phoneNumberId: e.target.value})} />
-          <select className="w-full px-2 py-1 border rounded" value={creds.mode} onChange={e=>setCreds({...creds, mode: e.target.value})}>
+        <div className="absolute right-0 z-10 mt-2 w-80 bg-gray-900 border border-[#255F38] rounded shadow p-3 space-y-2">
+          <div className="text-xs text-white font-medium">WhatsApp Config</div>
+          <input placeholder="Token" className="w-full px-2 py-1 border border-[#255F38] bg-black text-white rounded focus:border-[#1F7D53] focus:outline-none" value={creds.token} onChange={e=>setCreds({...creds, token: e.target.value})} />
+          <input placeholder="Phone Number ID" className="w-full px-2 py-1 border border-[#255F38] bg-black text-white rounded focus:border-[#1F7D53] focus:outline-none" value={creds.phoneNumberId} onChange={e=>setCreds({...creds, phoneNumberId: e.target.value})} />
+          <select className="w-full px-2 py-1 border border-[#255F38] bg-black text-white rounded focus:border-[#1F7D53] focus:outline-none" value={creds.mode} onChange={e=>setCreds({...creds, mode: e.target.value})}>
             <option value="test">Test</option>
             <option value="production">Production</option>
           </select>
-          <button onClick={saveCreds} disabled={saving} className="w-full text-xs px-2 py-1 bg-gray-900 text-white rounded">{saving? 'Saving…':'Save'}</button>
-          <div className="h-px bg-gray-200" />
-          <div className="text-xs text-gray-700 font-medium">Request Code (Prod)</div>
+          <button onClick={saveCreds} disabled={saving} className="w-full text-xs px-2 py-1 bg-[#255F38] text-white rounded hover:bg-[#1F7D53] disabled:opacity-50 transition-colors">{saving? 'Saving…':'Save'}</button>
+          <div className="h-px bg-[#255F38]" />
+          <div className="text-xs text-white font-medium">Request Code (Prod)</div>
           <div className="flex gap-2">
-            <select className="flex-1 px-2 py-1 border rounded" value={codeMethod} onChange={e=>setCodeMethod(e.target.value)}>
+            <select className="flex-1 px-2 py-1 border border-[#255F38] bg-black text-white rounded focus:border-[#1F7D53] focus:outline-none" value={codeMethod} onChange={e=>setCodeMethod(e.target.value)}>
               <option>SMS</option>
               <option>VOICE</option>
             </select>
-            <input placeholder="lang (en)" className="w-24 px-2 py-1 border rounded" value={language} onChange={e=>setLanguage(e.target.value)} />
+            <input placeholder="lang (en)" className="w-24 px-2 py-1 border border-[#255F38] bg-black text-white rounded focus:border-[#1F7D53] focus:outline-none" value={language} onChange={e=>setLanguage(e.target.value)} />
           </div>
-          <button onClick={requestCode} disabled={saving} className="w-full text-xs px-2 py-1 border rounded">Send Code</button>
+          <button onClick={requestCode} disabled={saving} className="w-full text-xs px-2 py-1 border border-[#255F38] text-white rounded hover:bg-[#255F38] disabled:opacity-50 transition-colors">Send Code</button>
           <div className="flex gap-2 items-center">
-            <input placeholder="123456" className="flex-1 px-2 py-1 border rounded" value={code} onChange={e=>setCode(e.target.value)} />
-            <button onClick={verifyCode} disabled={saving} className="text-xs px-2 py-1 border rounded">Verify</button>
+            <input placeholder="123456" className="flex-1 px-2 py-1 border border-[#255F38] bg-black text-white rounded focus:border-[#1F7D53] focus:outline-none" value={code} onChange={e=>setCode(e.target.value)} />
+            <button onClick={verifyCode} disabled={saving} className="text-xs px-2 py-1 border border-[#255F38] text-white rounded hover:bg-[#255F38] disabled:opacity-50 transition-colors">Verify</button>
           </div>
-          {!!msg && <div className="text-xs text-gray-600">{msg}</div>}
+          {!!msg && <div className="text-xs text-gray-300">{msg}</div>}
         </div>
       )}
     </div>
@@ -140,10 +140,10 @@ const WhatsAppIntegrationPanel = () => {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-gray-900">WhatsApp Integration</h3>
+        <h3 className="text-lg font-semibold text-white">WhatsApp Integration</h3>
         <div className="flex items-center gap-3">
 
-          <span className={`px-2 py-1 text-xs rounded ${status.connected ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'}`}>
+          <span className={`px-2 py-1 text-xs rounded ${status.connected ? 'bg-[#1F7D53] text-white' : 'bg-gray-800 text-gray-300'}`}>
             {status.connected ? `Connected (Phone ID: ${status.phoneNumberId || '—'})` : 'Not Connected'}
           </span>
         </div>
@@ -152,39 +152,39 @@ const WhatsAppIntegrationPanel = () => {
       {/* hidden diagnose banner and setup guide for cleaner UI */}
       {/* <WhatsAppSetupGuide /> */}
 
-      <div className="bg-white rounded-xl border border-gray-200 p-4">
+      <div className="bg-gray-900 rounded-xl border border-[#255F38] p-4">
         <div className="flex items-center justify-between mb-2">
-          <h4 className="font-medium text-gray-900">Send WhatsApp Message</h4>
+          <h4 className="font-medium text-white">Send WhatsApp Message</h4>
           <RegisterControls />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Recipient Phone (E.164, digits only)</label>
-            <input type="text" value={test.phoneNumber} onChange={e=>setTest({...test, phoneNumber: e.target.value})} placeholder="15551234567" className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
+            <label className="block text-sm text-gray-300 mb-1">Recipient Phone (E.164, digits only)</label>
+            <input type="text" value={test.phoneNumber} onChange={e=>setTest({...test, phoneNumber: e.target.value})} placeholder="15551234567" className="w-full px-3 py-2 border border-[#255F38] bg-black text-white rounded-lg focus:border-[#1F7D53] focus:outline-none" />
           </div>
           <div className="md:col-span-2">
-            <label className="block text-sm text-gray-600 mb-1">Message</label>
-            <input type="text" value={test.message} onChange={e=>setTest({...test, message: e.target.value})} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
+            <label className="block text-sm text-gray-300 mb-1">Message</label>
+            <input type="text" value={test.message} onChange={e=>setTest({...test, message: e.target.value})} className="w-full px-3 py-2 border border-[#255F38] bg-black text-white rounded-lg focus:border-[#1F7D53] focus:outline-none" />
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Mode</label>
-            <select value={test.mode} onChange={e=>setTest({...test, mode: e.target.value})} className="w-full px-3 py-2 border border-gray-300 rounded-lg">
+            <label className="block text-sm text-gray-300 mb-1">Mode</label>
+            <select value={test.mode} onChange={e=>setTest({...test, mode: e.target.value})} className="w-full px-3 py-2 border border-[#255F38] bg-black text-white rounded-lg focus:border-[#1F7D53] focus:outline-none">
               <option value="test">Test</option>
               <option value="production">Production</option>
             </select>
           </div>
         </div>
         <div className="mt-3 flex items-center gap-3">
-          <button onClick={sendTest} disabled={sending} className="px-4 py-2 bg-green-600 text-white rounded-lg disabled:opacity-50">
+          <button onClick={sendTest} disabled={sending} className="px-4 py-2 bg-[#1F7D53] text-white rounded-lg disabled:opacity-50 hover:bg-[#255F38] transition-colors">
             {sending ? 'Sending…' : 'Send Test via WhatsApp'}
           </button>
           {result && (
-            <span className={`text-sm ${result.ok ? 'text-green-700' : 'text-red-700'}`}>
+            <span className={`text-sm ${result.ok ? 'text-[#1F7D53]' : 'text-red-400'}`}>
               {result.ok ? 'Sent!' : `Failed: ${result.error}`}
             </span>
           )}
         </div>
-        <p className="mt-2 text-xs text-gray-500">Note: Requires your Access Token, Phone Number ID and Webhook to be set and connected.</p>
+        <p className="mt-2 text-xs text-gray-400">Note: Requires your Access Token, Phone Number ID and Webhook to be set and connected.</p>
       </div>
     </div>
   );
