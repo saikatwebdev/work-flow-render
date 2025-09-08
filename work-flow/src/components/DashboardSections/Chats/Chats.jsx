@@ -57,9 +57,9 @@ const Chats = () => {
   };
 
   return (
-    <div className="h-full flex flex-col" style={{ backgroundColor: '#000000' }}>
+    <div className="h-full flex flex-col bg-black border border-gray-600 rounded-lg">
       {/* Chat Platform Selector */}
-      <div className="border-b px-4 py-2 flex items-center justify-between" style={{ backgroundColor: '#1F7D53', borderBottomColor: '#255F38' }}>
+      <div className="border-b border-gray-600 px-4 py-2 flex items-center justify-between bg-black shadow-lg" style={{ boxShadow: '0 0 20px rgba(255, 255, 255, 0.1)' }}>
         <h2 className="text-lg font-semibold text-white">Chat Platforms</h2>
         <div className="flex items-center gap-2">
           {chatOptions.map((option) => {
@@ -73,9 +73,8 @@ const Chats = () => {
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md transition-all duration-200 ${
                   isActive 
                     ? `${option.color} text-white shadow-sm` 
-                    : `text-gray-300 ${option.hoverColor} hover:text-white`
+                    : `text-gray-300 bg-gray-800 hover:bg-gray-700 hover:text-white border border-gray-600`
                 }`}
-                style={!isActive ? { backgroundColor: '#255F38' } : {}}
               >
                 <IconComponent size={16} />
                 <span className="text-sm font-medium">{option.name}</span>
@@ -86,7 +85,7 @@ const Chats = () => {
       </div>
 
       {/* Active Chat Component */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-hidden bg-black">
         {renderActiveChat()}
       </div>
     </div>
